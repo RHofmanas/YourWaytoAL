@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+                
+        {
+            "name": "Your Key to AL",
+            "request": "launch",
+            "type": "al",
+            "environmentType": "OnPrem",
+            "server": "http://yourkeytoAL/BC/",
+            "serverInstance": "BC",
+            "authentication": "UserPassword",
+            "startupObjectId": 50109,
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            "tenant": "default",
+            "schemaUpdateMode": "ForceSync"
+        }
+    ]
+}
