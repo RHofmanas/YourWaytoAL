@@ -131,6 +131,7 @@ page 50109 "Test Statements Page"
                     GrandQtyTotal := GrandQtyTotal + Quantity;
                 end;
             }
+            
             action(ExecuteCase)
             {
                 Caption = 'Execute Case';
@@ -152,7 +153,7 @@ page 50109 "Test Statements Page"
                                 TotalSales := Totalsales + Result;
                                 TotalQtySales := TotalQtySales + Quantity
                             end;
-                    end;
+                    END;
                     GrandTotal := GrandTotal + Result;
                     GrandQtyTotal := GrandQtyTotal + Quantity;
                 end;

@@ -78,55 +78,70 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Course - Action Open Course List - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Course Information Page</source>
+        <trans-unit id="Page 2718835136 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Course List Page</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 1090351696 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1090351696 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Active field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Active - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Active - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 3004954119 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Code field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Code - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Code - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Description field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Description - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Description - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 1623047485 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1623047485 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Difficulty field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Difficulty - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Difficulty - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 1637095154 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1637095154 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Duration field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Duration - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Duration - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1789400218 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Level field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Level - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2718835136 - Control 2961552353 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Name field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Name - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Name - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 1353320629 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1353320629 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Passing Rate field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Passing Rate - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Passing Rate - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 3635338911 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 3635338911 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Price field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Price - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Price - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 2653014222 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="Page 2718835136 - Control 1592170078 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the SPA field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control SPA - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2718835136 - Control 494089240 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Suggestion field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Suggestion - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2718835136 - Control 1878130204 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Type field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Course Information Page - Control Type - Property ToolTip</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Course List Page - Control Type - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 1766254660 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Custom Page</source>
@@ -347,6 +362,36 @@
           <source>Open</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page SalesInvoiceCuePage - Control SalesCue - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Test Array Page</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 2457075619 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Clear</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action Clear - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 408149967 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Generate Input</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action Generate Input - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 1678592784 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ImprovedSort</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action ImprovedSort - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 2414363899 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Populate Output</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action Populate Output - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 3007069574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sort</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action Sort - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2699354349 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Test Statements Page</source>
