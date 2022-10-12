@@ -16,7 +16,7 @@
   "application": "20.0.0.0",
   "idRanges": [
     {
-      "from": 50100,
+      "from": 50000,
       "to": 50149
     }
   ],
@@ -24,7 +24,7 @@
     "allowDebugging": true,
     "allowDownloadingSource": false,
     "includeSourceInSymbolFile": false
-  },
+  },  
   "runtime": "9.0",
   "features": [ "TranslationFile", "GenerateCaptions" ]
 }
