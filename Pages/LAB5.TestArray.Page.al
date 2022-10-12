@@ -3,8 +3,6 @@ page 50111 "Test Array Page"
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
-    //SourceTable = TableName;
-
     layout
     {
         area(Content)
@@ -217,6 +215,17 @@ page 50111 "Test Array Page"
                     until IsSorted
                 end;
             }
+            action(QuickSorting)
+            {
+                ApplicationArea = All;
+
+                trigger OnAction()
+                begin
+                    LoopCount := 0;
+                    SwapCount := 0;
+                    QuickSort(OutputNumber, 1, ArrayLen(OutputNumber));
+                end;
+            }
         }
     }
 
@@ -227,6 +236,42 @@ page 50111 "Test Array Page"
         temp := OutputNumber[idx];
         OutputNumber[idx] := OutputNumber[idx - 1];
         OutputNumber[idx - 1] := temp;
+    end;
+
+    procedure partition(arr: array[10] of Integer; low: Integer; high: Integer) ReturnValue: Integer
+    var
+        pivot: Integer;
+        i: Integer;
+        j: Integer;
+        temp: Integer;
+    begin
+        pivot := arr[high];
+        i := (low - 1);
+        For j := low to high do begin
+            If arr[j] <= pivot then begin
+                i += 1;
+                temp := arr[i];
+                arr[i] := arr[j];
+                arr[j] := temp;
+            end;
+            j += 1;
+        end;
+        temp := arr[i + 1];
+        arr[i + 1] := arr[high];
+        arr[high] := temp;
+        ReturnValue := (i + 1);
+    end;
+
+
+    procedure QuickSort(arr: array[10] of Integer; low: Integer; high: Integer)
+    var
+        pi: Integer;
+    begin
+        If low < high then begin
+            pi := partition(arr, low, high);
+            QuickSort(arr, low, pi - 1);
+            QuickSort(arr, pi + 1, high);
+        end;
     end;
 
     var

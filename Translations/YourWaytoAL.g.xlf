@@ -388,6 +388,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action Populate Output - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3686439776 - Action 4016348273 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>QuickSorting</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Test Array Page - Action QuickSorting - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3686439776 - Action 3007069574 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sort</source>
           <note from="Developer" annotates="general" priority="2"></note>
