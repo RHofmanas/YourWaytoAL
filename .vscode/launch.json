@@ -10,7 +10,7 @@
             "server": "http://yourkeytoAL/BC/",
             "serverInstance": "BC",
             "authentication": "UserPassword",
-            "startupObjectId": 50009,
+            "startupObjectId": 50012,
             "startupObjectType": "Page",
             "breakOnError": true,
             "launchBrowser": true,

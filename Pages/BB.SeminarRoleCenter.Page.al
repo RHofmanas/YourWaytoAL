@@ -8,7 +8,6 @@ page 50012 "Seminar Role Center"
     {
         area(RoleCenter)
         {
-
             part("Seminar Activities"; "Seminar Activities")
             {
                 Caption = 'Seminar Activities';
@@ -59,13 +58,13 @@ page 50012 "Seminar Role Center"
                 }
                 action(ResourceList)
                 {
-                    Caption = 'Resource List';
+                    Caption = 'Resources';
                     ApplicationArea = All;
                     RunObject = page "Resource List";
                 }
                 action(Instructors)
                 {
-                    Caption = 'Istructors';
+                    Caption = 'Instructors';
                     ApplicationArea = All;
                     RunObject = page Instructors;
                 }
@@ -99,7 +98,7 @@ page 50012 "Seminar Role Center"
             }
             action(SeminarRegistrationList)
             {
-                Caption = 'Seminar Registration';
+                Caption = 'Seminar Registrations';
                 ApplicationArea = All;
                 RunObject = Page "Seminar Registration List";
             }
