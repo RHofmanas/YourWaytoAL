@@ -151,7 +151,6 @@ page 50009 "Seminar Registration"
                     Caption = 'Job No.';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of Job No.';
-
                 }
             }
         }
@@ -175,26 +174,23 @@ page 50009 "Seminar Registration"
             {
                 caption = 'Related Information';
                 Image = RelatedInformation;
-                action("Seminar Registration")
-                {
-                    Caption = 'Seminar Registration';
-                    Image = BookingsLogo;
-                    ApplicationArea = Comments;
-                    RunObject = Page "Seminar Registration";
-                }
+
                 action("Comments")
                 {
                     Caption = 'Comments';
                     ApplicationArea = Comments;
                     Image = ViewComments;
                     RunObject = Page "Comment Sheet";
+                    RunPageLink = "Table Name" = const("Seminar Registration Header"), "No." = field("No.");
                 }
                 action(Charges)
                 {
                     ApplicationArea = Suite;
                     Caption = 'Charges';
-                    Image = Calculate;
+                    Image = IssueFinanceCharge;
                     RunObject = Page "Seminar Charges";
+                    RunPageLink = "Seminar Registration no." = field("No.");
+                    ToolTip = 'View the Seminar Charges for the record';
                 }
             }
         }

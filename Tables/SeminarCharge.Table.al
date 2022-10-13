@@ -51,6 +51,9 @@ table 50006 "Seminar Charge"
         {
             Caption = 'No.';
             DataClassification = ToBeClassified;
+            TableRelation = if ("Charge Type" = CONST(Resource)) Resource else
+            if ("Charge Type" = const("G/L Account")) "G/L Account";
+
             trigger OnValidate()
             begin
                 Case "Charge Type" of
@@ -87,6 +90,7 @@ table 50006 "Seminar Charge"
             Caption = 'Quantity';
             DataClassification = ToBeClassified;
             DecimalPlaces = 0 : 5;
+
             trigger OnValidate()
             begin
                 UpdateAmounts();
@@ -98,6 +102,7 @@ table 50006 "Seminar Charge"
             DataClassification = ToBeClassified;
             AutoFormatType = 2;
             MinValue = 0;
+
             trigger OnValidate()
             begin
                 UpdateAmounts();
@@ -128,7 +133,20 @@ table 50006 "Seminar Charge"
             DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
-
+                Case
+                 "Charge Type" OF
+                    "Charge Type"::Resource:
+                        begin
+                            Resource.Get("No.");
+                            if "Unit of Measure Code" = '' then
+                                "Unit of Measure Code" := Resource."Base Unit of Measure";
+                            ResourceUofM.Get("No.", "Unit of Measure Code");
+                            "Qty. per Unit of Measure" := ResourceUofM."Qty. per Unit of Measure";
+                            "Unit Price" := Round(Resource."Unit Price" * "Qty. per Unit of Measure");
+                        end;
+                    "Charge Type"::"G/L Account":
+                        "Qty. per Unit of Measure" := 1;
+                end;
             end;
         }
         field(13; "Gen. Prod. Posting Group"; Code[10])
@@ -175,7 +193,7 @@ table 50006 "Seminar Charge"
     var
         SeminarRegistrationHeader: Record "Seminar Registration Header";
     begin
-        SeminarRegistrationHeader.Get("No.");
+        SeminarRegistrationHeader.Get("Seminar Registration No.");
         "Job No." := SeminarRegistrationHeader."Job No.";
     end;
 

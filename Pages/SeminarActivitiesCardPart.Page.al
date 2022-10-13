@@ -29,9 +29,9 @@ page 50011 "Seminar Activities"
                     ToolTip = 'Specifies the value of the Upcoming Seminars field.';
                 }
             }
-
         }
     }
+
     trigger OnOpenPage()
     var
         Date: Record Date;

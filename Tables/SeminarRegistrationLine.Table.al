@@ -34,7 +34,6 @@ table 50005 "Seminar Registration Line"
             Caption = 'Participant Contact No.';
             DataClassification = ToBeClassified;
             TableRelation = Contact;
-
             trigger OnLookup()
             var
                 ContactBusinessRelation: Record "Contact Business Relation";
@@ -47,8 +46,10 @@ table 50005 "Seminar Registration Line"
                 if ContactBusinessRelation.FindFirst() then begin
                     Contact.SetRange(Type, Contact.Type::Person);
                     Contact.SetRange("Company No.", ContactBusinessRelation."Contact No.");
-                    if Page.RunModal(0, Contact) = Action::OK then
+                    if Page.RunModal(0, Contact) = Action::LookupOK then begin
                         Rec.Validate("Participant Contact No.", Contact."No.");
+                        Rec.CalcFields("Participant Name");
+                    end;
                 end;
             end;
         }
@@ -57,7 +58,7 @@ table 50005 "Seminar Registration Line"
             Caption = 'Participant Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup(Contact."Lookup Contact No.");
+            CalcFormula = lookup(Contact.Name where("No." = Field("Participant Contact No.")));
         }
         field(6; "Register Date"; Date)
         {

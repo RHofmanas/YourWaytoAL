@@ -20,7 +20,7 @@ table 50007 "Seminar Cue"
         }
         field(3; "Todays Seminars"; Integer)
         {
-            Caption = 'Active Seminars';
+            Caption = 'Todays Seminars';
             FieldClass = FlowField;
             CalcFormula = count("Seminar Registration Header"
                 where(Status = const(Registration), "Starting Date" = field("Today Date filter")));

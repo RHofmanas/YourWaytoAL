@@ -57,7 +57,6 @@ table 50004 "Seminar Registration Header"
                     Rec."VAT Prod. Posting Group" := Seminar."VAT Prod. Posting Group";
                     Rec."Maximum Participants" := Seminar."Maximum Participants";
                     Rec."Minimum Participants" := Seminar."Minimum Participants";
-
                     Rec.Validate("Job No.", Seminar."Job No.");
                 end else
                     Rec."Seminar Name" := '';
@@ -73,7 +72,6 @@ table 50004 "Seminar Registration Header"
             Caption = 'Instructor Code';
             DataClassification = ToBeClassified;
             TableRelation = Instructor;
-
             trigger OnValidate()
             var
                 Instructor: Record Instructor;
@@ -89,7 +87,7 @@ table 50004 "Seminar Registration Header"
             Caption = 'Instructor Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup(Instructor.Name);
+            CalcFormula = lookup(Instructor.Name where(Code = field("Instructor Code")));
         }
 
         field(7; Status; Enum "Seminar Reg. Status")

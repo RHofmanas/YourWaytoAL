@@ -1,6 +1,3 @@
-
-// reviewed, tested 04.10.22
-
 table 50001 Instructor
 {
     Caption = 'Instructor';

@@ -172,9 +172,8 @@ table 50008 "Seminar Journal Line"
             Clustered = true;
         }
     }
-    procedure EmptyLine() Return: Boolean
+    procedure EmptyLine(): Boolean
     begin
-        if Rec."Seminar No." = '' then Return := true;
+        if Rec."Seminar No." = '' then exit(true);
     end;
-
 }

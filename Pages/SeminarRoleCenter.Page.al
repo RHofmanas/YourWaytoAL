@@ -113,19 +113,19 @@ page 50012 "Seminar Role Center"
         {
             action(NewSeminar)
             {
-                Caption = 'New Seminar';
+                Caption = 'Seminar';
                 ApplicationArea = All;
                 RunObject = Page "Seminar List";
             }
             action(NewSeminarRegistration)
             {
-                Caption = 'New Seminar Registration';
+                Caption = 'Seminar Registration';
                 ApplicationArea = All;
                 RunObject = Page "Seminar Registration";
             }
             action(NewSalesInvoice)
             {
-                Caption = 'New Sales Invoice';
+                Caption = 'Sales Invoice';
                 ApplicationArea = All;
             }
             action(FindEntries)
