@@ -20,20 +20,27 @@ page 50012 "Seminar Role Center"
     {
         area(Sections)
         {
-            group(PostedDocuments)
+
+            group(History)
             {
-                Caption = 'Posted Documents';
-                Image = RegisteredDocs;
-                action(PostedSalesInvoices)
+                Caption = 'History';
+                Image = History;
+                action(PostedSeminarRegistrations)
                 {
-                    Caption = 'Posted Sales Invoices';
-                    RunObject = Page "Posted Service Invoices";
+                    Caption = 'Posted Seminar Registrations';
+                    RunObject = Page "Posted Seminar Registration";
                     ApplicationArea = All;
                 }
-                action(PostedSales)
+                action(PostedSeminarCharges)
                 {
-                    Caption = 'Posted Sales Credit Memos';
-                    RunObject = Page "Posted Sales Credit Memos";
+                    Caption = 'Posted Seminar Charges';
+                    RunObject = Page "Posted Seminar Charges";
+                    ApplicationArea = All;
+                }
+                action(SeminarRegisters)
+                {
+                    Caption = 'Seminar Registers';
+                    RunObject = Page "Seminar Registers";
                     ApplicationArea = All;
                 }
             }

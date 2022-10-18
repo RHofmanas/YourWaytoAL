@@ -83,11 +83,11 @@ table 50009 "Seminar Ledger Entry"
             DataClassification = ToBeClassified;
             TableRelation = Contact;
         }
-        field(15; "Participant Name"; Text[80])
+        field(15; "Participant Name"; Text[100])
         {
             Caption = 'Participant Name';
             FieldClass = FlowField;
-            CalcFormula = lookup(Contact."Lookup Contact No.");
+            CalcFormula = lookup(Contact.Name where("No." = field("Participant Contact No.")));
         }
         field(16; Chargeable; Boolean)
         {
@@ -163,6 +163,10 @@ table 50009 "Seminar Ledger Entry"
             DataClassification = ToBeClassified;
             TableRelation = User."User Name";
         }
+        field(29; "Job Ledger Entry No."; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
     }
     keys
     {
@@ -179,23 +183,22 @@ table 50009 "Seminar Ledger Entry"
 
         }
     }
-    procedure GetLastEntryNo() ReturnValue: Integer
+    procedure GetLastEntryNo(): Integer
     var
         FindRecordManagement: Codeunit "Find Record Management";
     begin
         exit(FindRecordManagement.GetLastEntryIntFieldValue(Rec, FieldNo("Entry No.")))
     end;
 
-    procedure CopyFromSeminarJnlLine(var SeminarJnlLine: Record "Seminar Journal Line")
+    procedure CopyFromSeminarJnlLine(SeminarJnlLine: Record "Seminar Journal Line")
     begin
         SeminarLedgEntry."Bill-to Customer No." := SeminarJnlLine."Bill-to Customer No.";
         SeminarLedgEntry.Chargeable := SeminarJnlLine.Chargeable;
         SeminarLedgEntry.Description := SeminarJnlLine.Description;
         SeminarLedgEntry."Document Date" := SeminarJnlLine."Document Date";
         SeminarLedgEntry."Document No." := SeminarJnlLine."Document No.";
-
-        SeminarLedgEntry."Option Type" := SeminarJnlLine."Option Type";  // <-----------------Type/Name mismatch
-
+        SeminarLedgEntry."Option Type" := SeminarJnlLine."Option Type";
+        SeminarLedgEntry."Charge Type" := SeminarJnlLine."Charge Type";
         SeminarLedgEntry."Instructor Code" := SeminarJnlLine."Instructor Code";
         SeminarLedgEntry."Job No." := SeminarJnlLine."Job No.";
         SeminarLedgEntry."Journal Batch Name" := SeminarJnlLine."Journal Batch Name";
@@ -204,6 +207,7 @@ table 50009 "Seminar Ledger Entry"
         SeminarLedgEntry.Quantity := SeminarJnlLine.Quantity;
         SeminarLedgEntry."Reason Code" := SeminarJnlLine."Reason Code";
         SeminarLedgEntry."Seminar No." := SeminarJnlLine."Seminar No.";
+        SeminarLedgEntry."No. Series" := SeminarJnlLine."Posting No. Series";
         SeminarLedgEntry."Seminar Registration No." := SeminarJnlLine."Seminar Registration No.";
         SeminarLedgEntry."Seminar Room Code" := SeminarJnlLine."Seminar Room Code";
         SeminarLedgEntry."Source Code" := SeminarJnlLine."Source Code";

@@ -53,11 +53,9 @@ table 50010 "Seminar Register"
         }
         key(key2; "Creation Date")
         {
-
         }
         key(key3; "Source Code", "Journal Batch Name", "Creation Date")
         {
-
         }
     }
 }

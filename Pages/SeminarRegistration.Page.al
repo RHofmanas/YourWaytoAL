@@ -93,7 +93,6 @@ page 50009 "Seminar Registration"
                 Caption = 'Lines';
                 ApplicationArea = All;
                 SubPageLink = "Seminar Registration No." = field("No.");
-
             }
             group("Seminar Room")
             {
@@ -191,6 +190,18 @@ page 50009 "Seminar Registration"
                     RunObject = Page "Seminar Charges";
                     RunPageLink = "Seminar Registration no." = field("No.");
                     ToolTip = 'View the Seminar Charges for the record';
+                }
+                action(Posting)
+                {
+                    ApplicationArea = Suite;
+                    Caption = 'P&post';
+                    Image = Post;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedCategory = Process;
+                    ShortCutKey = 'F9';
+                    RunObject = Codeunit "Seminar-Post";
+                    ToolTip = 'Post Seminar';
                 }
             }
         }

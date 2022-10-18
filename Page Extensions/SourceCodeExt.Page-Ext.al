@@ -1,5 +1,4 @@
 pageextension 50000 "Source Code Setup Ext" extends "Source Code Setup"
-
 {
     layout
     {
@@ -24,10 +23,8 @@ tableextension 50000 "Sourse Code Setup Ext" extends "Source Code Setup"
     {
         field(50000; Seminar; Code[10])
         {
-            TableRelation = "Source Code Setup";
+            TableRelation = "Source Code";
         }
     }
 }
-
-
 

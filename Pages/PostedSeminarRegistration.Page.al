@@ -3,7 +3,8 @@ page 50018 "Posted Seminar Registration"
     Caption = 'Posted Seminar Registration';
     PageType = Card;
     Editable = false;
-    SourceTable = "Seminar Registration Header";
+    UsageCategory = Administration;
+    SourceTable = "Posted Seminar Reg. Header";
 
     layout
     {
@@ -73,9 +74,8 @@ page 50018 "Posted Seminar Registration"
                 {
                     Caption = 'Posted Seminar Registrations';
                     ApplicationArea = All;
-                    //SubPageLink = "Posted Seminar Reg. Subpage" = CONST(Customer), "No." = field("No.");
+                    SubPageLink = "Seminar Registration No." = field("No.");
                 }
-
             }
             group("Seminar Room")
             {
@@ -129,25 +129,31 @@ page 50018 "Posted Seminar Registration"
     {
         area(Processing)
         {
-            group("Related Information")
+            action(Comments)
             {
-                caption = 'Related Information';
-                Image = RelatedInformation;
+                Caption = 'Comments';
+                ApplicationArea = Comments;
+                Image = ViewComments;
+                RunObject = Page "Comment Sheet";
+                RunPageLink = "Table Name" = const("Posted Seminar Registration"), "No." = field("No.");
 
-                action("Comments")
-                {
-                    Caption = 'Comments';
-                    ApplicationArea = Comments;
-                    Image = ViewComments;
-                    RunObject = Page "Comment Sheet";
-                }
-                action(Charges)
-                {
-                    ApplicationArea = Suite;
-                    Caption = 'Charges';
-                    Image = Calculate;
-                    RunObject = Page "Seminar Charges";
-                }
+                trigger OnAction()
+                begin
+                    CurrPage.Update();
+                end;
+            }
+            action(Charges)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Charges';
+                Image = IssueFinanceCharge;
+                RunObject = Page "Seminar Charges";
+                RunPageLink = "Seminar Registration no." = field("No.");
+
+                trigger OnAction()
+                begin
+                    CurrPage.Update();
+                end;
             }
         }
     }
@@ -155,8 +161,6 @@ page 50018 "Posted Seminar Registration"
     var
         PostedSeminarHeader: Record "Posted Seminar Reg. Header";
     begin
-        PostedSeminarHeader.Get;
         PostedSeminarHeader.SetRange("No.");
     end;
 }
-

@@ -28,12 +28,12 @@ table 50012 "Posted Seminar Reg. Line"
             DataClassification = ToBeClassified;
             TableRelation = Contact;
         }
-        field(5; "Participant Name"; Text[100]) // <--- changed from Text[50]
+        field(5; "Participant Name"; Text[100])
         {
             Caption = 'Participant Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup(Contact.Name where("No." = field("Participant Contact No."))); // <--- not sure is correct
+            CalcFormula = lookup(Contact.Name where("No." = field("Participant Contact No.")));
         }
         field(6; "Register Date"; Date)
         {

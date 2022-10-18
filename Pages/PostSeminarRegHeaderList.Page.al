@@ -2,7 +2,7 @@ page 50015 "Post. Seminar Reg. Header List"
 {
     ApplicationArea = All;
     Caption = 'Post. Seminar Reg. Header List';
-    PageType = List;
+    PageType = ListPart;
     Editable = false;
     SourceTable = "Posted Seminar Reg. Header";
     UsageCategory = Administration;

@@ -31,7 +31,7 @@ codeunit 50002 "Seminar Jnl.-Post Line"
     */
     procedure Code(): Integer
     begin
-        if SeminarJnlLine.EmptyLine then
+        if SeminarJnlLine.EmptyLine() then
             exit;
 
         SeminarJnlCheckLine.RunCheck(SeminarJnlLine);
@@ -46,12 +46,12 @@ codeunit 50002 "Seminar Jnl.-Post Line"
 
         if SeminarRegister."No." = 0 then begin
             SeminarRegister.LockTable();
-            if (not SeminarRegister.FindLast) or (SeminarRegister."To Entry No." <> 0) then begin
+            if (not SeminarRegister.FindLast()) or (SeminarRegister."To Entry No." <> 0) then begin
                 SeminarRegister.Init();
                 SeminarRegister."No." := SeminarRegister."No." + 1;
                 SeminarRegister."From Entry No." := NextEntryNo;
                 SeminarRegister."To Entry No." := NextEntryNo;
-                SeminarRegister."Creation Date" := Today;
+                SeminarRegister."Creation Date" := Today();
                 SeminarRegister."Source Code" := SeminarJnlLine."Source Code";
                 SeminarRegister."Journal Batch Name" := SeminarJnlLine."Journal Batch Name";
                 SeminarRegister."User ID" := UserId;
@@ -66,13 +66,10 @@ codeunit 50002 "Seminar Jnl.-Post Line"
         SeminarLedgEntry."Total Price" := Round(SeminarLedgEntry."Total Price");
         SeminarLedgEntry."User ID" := UserId;
         SeminarLedgEntry."Entry No." := NextEntryNo;
-        SeminarLedgEntry.Insert(true);
+        SeminarLedgEntry.Insert();
         NextEntryNo := NextEntryNo + 1;
         exit(NextEntryNo);
     end;
-
-
-
 
     var
         SeminarJnlLine: Record "Seminar Journal Line";

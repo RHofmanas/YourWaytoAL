@@ -1,7 +1,7 @@
 page 50010 "Seminar Registration List"
 {
     Caption = 'Seminar Registration List';
-    PageType = ListPart;
+    PageType = List;                            // Changed from ListPart
     SourceTable = "Seminar Registration Header";
     Editable = false;
     CardPageId = "Seminar Registration";
@@ -59,31 +59,39 @@ page 50010 "Seminar Registration List"
     {
         area(Processing)
         {
-            group("Related Information")
+
+            action("Seminar Registration")
             {
-                caption = 'Related Information';
-                Image = RelatedInformation;
-                action("Seminar Registration")
-                {
-                    Caption = 'Seminar Registration';
-                    Image = BookingsLogo;
-                    ApplicationArea = Comments;
-                    RunObject = Page "Seminar Registration";
-                }
-                action("Comments")
-                {
-                    Caption = 'Comments';
-                    ApplicationArea = Comments;
-                    Image = ViewComments;
-                    RunObject = Page "Comment Sheet";
-                }
-                action(Charges)
-                {
-                    ApplicationArea = Suite;
-                    Caption = 'Charges';
-                    Image = Calculate;
-                    RunObject = Page "Seminar Charges";
-                }
+                Caption = 'Seminar Registration';
+                Image = BookingsLogo;
+                ApplicationArea = Comments;
+                RunObject = Page "Seminar Registration";
+            }
+            action("Comments")
+            {
+                Caption = 'Comments';
+                ApplicationArea = Comments;
+                Image = ViewComments;
+                RunObject = Page "Comment Sheet";
+            }
+            action(Charges)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Charges';
+                Image = Calculate;
+                RunObject = Page "Seminar Charges";
+            }
+            action(Posting) // added page 185
+            {
+                ApplicationArea = Suite;
+                Caption = 'P&post';
+                Image = Post;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                ShortCutKey = 'F9';
+                RunObject = Codeunit "Seminar-Post(Yes/No)";
+                ToolTip = 'Post Seminar';
             }
         }
     }

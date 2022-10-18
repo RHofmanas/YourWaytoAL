@@ -1,6 +1,6 @@
 page 50016 "Posted Seminar Reg. Subpage"
 {
-    Caption = 'Posted Seminar Reg. Subpage';
+    Caption = 'Posted Seminar Registration Lines';
     PageType = ListPart;
     Editable = false;
     SourceTable = "Posted Seminar Reg. Line";

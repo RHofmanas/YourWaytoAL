@@ -12,7 +12,6 @@ codeunit 50001 "Seminar Jnl.-Check Line"
         UserSetup: Record "User Setup";
         GLSetup: Record "General Ledger Setup";
     begin
-        SeminarJnlLine.Get();
         if SeminarJnlLine.EmptyLine then
             exit;
 
@@ -35,17 +34,18 @@ codeunit 50001 "Seminar Jnl.-Check Line"
         if SeminarJnlLine."Posting Date" <> NormalDate(SeminarJnlLine."Posting Date") then
             SeminarJnlLine.FieldError("Posting Date", ErrorInfo.Create(Text001, true));
 
-        UserSetup.Get();
+        UserSetup.Get(UserId()); // <---------------------------------------------------------
+
         if (UserSetup."Allow Posting From" <> 0D) and (UserSetup."Allow Posting To" <> 0D) then begin
-            if (SeminarJnlLine."Posting Date" < UserSetup."Allow Posting From")
-            or (SeminarJnlLine."Posting Date" > UserSetup."Allow Posting To") then
+            if not ((SeminarJnlLine."Posting Date" >= UserSetup."Allow Posting From")
+            and (SeminarJnlLine."Posting Date" <= UserSetup."Allow Posting To")) then
                 SeminarJnlLine.FieldError("Posting Date", ErrorInfo.Create(Text002, true))
         end
         else begin
             GLSetup.Get();
             if (GLSetup."Allow Posting From" <> 0D) and (GLSetup."Allow Posting To" <> 0D) then begin
-                if (SeminarJnlLine."Posting Date" < GLSetup."Allow Posting From")
-                or (SeminarJnlLine."Posting Date" > GLSetup."Allow Posting To") then
+                if not ((SeminarJnlLine."Posting Date" >= GLSetup."Allow Posting From")
+                and (SeminarJnlLine."Posting Date" <= GLSetup."Allow Posting To")) then
                     SeminarJnlLine.FieldError("Posting Date", ErrorInfo.Create(Text002, true));
             end
             else begin

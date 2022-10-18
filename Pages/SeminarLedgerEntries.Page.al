@@ -25,6 +25,7 @@ page 50013 "Seminar Ledger Entries"
                 }
                 field("Document Date"; Rec."Document Date")
                 {
+                    Visible = false;
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Document Date field.';
                 }
@@ -107,6 +108,11 @@ page 50013 "Seminar Ledger Entries"
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Entry No. field.';
+                }
+                field("Job Ledger Entry No."; Rec."Job Ledger Entry No.")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Job Ledger Entry No. field.';
                 }
             }
         }

@@ -748,6 +748,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Seminar Ledger Entry - Field Instructor Code - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3924826618 - Field 2843000315 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Job Ledger Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Seminar Ledger Entry - Field Job Ledger Entry No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3924826618 - Field 1908272084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Job No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1469,7 +1474,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page Posted Seminar Charges - Control Unit Price - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 979138089 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posted Seminar Reg. Subpage</source>
+          <source>Posted Seminar Registration Lines</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Posted Seminar Reg. Subpage - Property Caption</note>
         </trans-unit>
@@ -1632,11 +1637,6 @@
           <source>Specifies the value of Seminar Room Post Code.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Posted Seminar Registration - Control Seminar Room Post Code - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Page 2674218673 - Action 2499942453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Related Information</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Posted Seminar Registration - Action Related Information - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2674218673 - Action 867660531 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Charges</source>
@@ -1872,6 +1872,11 @@
           <source>Specifies the value of the Instructor Code field.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Ledger Entries - Control Instructor Code - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 129640500 - Control 2843000315 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Job Ledger Entry No. field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Ledger Entries - Control Job Ledger Entry No. - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 129640500 - Control 1908272084 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
           <source>Specifies the value of the Job No. field.</source>
@@ -2263,6 +2268,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration - Action Comments - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3319032050 - Action 2808404044 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Seminar</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration - Action Posting - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3319032050 - Action 2808404044 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>P&amp;post</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration - Action Posting - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 3800278800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Seminar Registration List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2308,11 +2323,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration List - Control Status - Property ToolTip</note>
         </trans-unit>
-        <trans-unit id="Page 3800278800 - Action 2499942453 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Related Information</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration List - Action Related Information - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Page 3800278800 - Action 867660531 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Charges</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2322,6 +2332,16 @@
           <source>Comments</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration List - Action Comments - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3800278800 - Action 2808404044 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Seminar</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration List - Action Posting - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 3800278800 - Action 2808404044 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>P&amp;post</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Registration List - Action Posting - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3800278800 - Action 3319032050 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Seminar Registration</source>
@@ -2518,20 +2538,25 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action Dimensions - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1256682420 - Action 3053737007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posted Documents</source>
+        <trans-unit id="Page 1256682420 - Action 4201773078 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>History</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action PostedDocuments - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action History - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1256682420 - Action 4173946331 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posted Sales Credit Memos</source>
+        <trans-unit id="Page 1256682420 - Action 1270590441 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Seminar Charges</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action PostedSales - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action PostedSeminarCharges - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Page 1256682420 - Action 161046261 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Posted Sales Invoices</source>
+        <trans-unit id="Page 1256682420 - Action 512351408 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posted Seminar Registrations</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action PostedSalesInvoices - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action PostedSeminarRegistrations - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1256682420 - Action 2754067271 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Seminar Registers</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Seminar Role Center - Action SeminarRegisters - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1256682420 - Action 1514883969 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Setup</source>
@@ -2787,16 +2812,6 @@
           <source>Seminar Registration No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Job Ledger Entry Extension - Field Seminar Registration No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 829886569 - Field 2532505008 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3399585325">
-          <source>Customer Filter</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Saleperson ext - Field Customer Filter - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="TableExtension 829886569 - Field 1424590445 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3399585325">
-          <source>Posted Invoices</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Saleperson ext - Field Posted Invoices - Property Caption</note>
         </trans-unit>
         <trans-unit id="TableExtension 2820943754 - Field 3718962993 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 1642199961">
           <source>Seminar</source>

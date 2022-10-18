@@ -163,6 +163,8 @@ table 50008 "Seminar Journal Line"
             DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
+
+
     }
 
     keys
