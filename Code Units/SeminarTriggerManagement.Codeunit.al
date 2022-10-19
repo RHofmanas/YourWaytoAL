@@ -14,5 +14,4 @@ codeunit 50010 "Seminar Trigger Management"
     begin
         JobLedgerEntry."Seminar Registration No." := JobJournalLine."Seminar Registration No.";    // <--- Changed from "Seminar Registre Code"
     end;
-
 }

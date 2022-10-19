@@ -16,19 +16,7 @@ codeunit 50002 "Seminar Jnl.-Post Line"
         SeminarJnlLine2 := SeminarJnlLine;
         exit(JobLedgEntryNo);
     end;
-    /*
-        procedure RunWithCheck(var JobJnlLine2: Record "Job Journal Line"): Integer
-        var
-            JobLedgEntryNo: Integer;
-        begin
-            OnBeforeRunWithCheck(JobJnlLine2);
 
-            JobJnlLine.Copy(JobJnlLine2);
-            JobLedgEntryNo := Code(true);
-            JobJnlLine2 := JobJnlLine;
-            exit(JobLedgEntryNo);
-        end;
-    */
     procedure Code(): Integer
     begin
         if SeminarJnlLine.EmptyLine() then
