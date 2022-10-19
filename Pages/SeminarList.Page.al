@@ -61,33 +61,48 @@ page 50006 "Seminar List"
             }
         }
     }
+
     actions
     {
-        area(Processing)
+        area(Navigation)
         {
-            group(SeminarCardSetupContainer)
+            group(Seminar)
             {
-                Caption = 'Related Information';
-                Image = RelatedInformation;
-                group(Seminar)
+                Caption = 'Seminar';
+                action("Comments")
                 {
-                    Caption = 'Seminar';
-                    action("Comments")
-                    {
-                        Caption = 'Comments';
-                        ApplicationArea = Comments;
-                        Image = ViewComments;
-                        RunObject = Page "Comment Sheet";
-                        RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
-                    }
-                    action("Extended Texts")
-                    {
-                        Caption = 'Extended Texts';
-                        ApplicationArea = Suite;
-                        Image = Text;
-                        RunObject = Page "Extended Text List";
-                        RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
-                    }
+                    Caption = 'Comments';
+                    ApplicationArea = Comments;
+                    Image = ViewComments;
+                    RunObject = Page "Comment Sheet";
+                    RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
+                }
+                action("Extended Texts")
+                {
+                    Caption = 'Extended Texts';
+                    ApplicationArea = Suite;
+                    Image = Text;
+                    RunObject = Page "Extended Text List";
+                    RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
+                }
+            }
+            group(SeminarManagement)
+            {
+                Caption = 'Seminar Management';
+                action(SeminarLedgerEntries)
+                {
+                    ShortcutKey = 'Ctrl+Shift+N';
+                    Caption = 'Entries';
+                    ApplicationArea = All;
+                    RunObject = Page "Seminar Ledger Entries";
+                    //RunPageLink =
+                }
+                action(SeminarRegistrations)
+                {
+                    Caption = 'Registrations';
+                    ApplicationArea = All;
+                    RunObject = Page "Seminar Registration List";
+                    //RunPageLink = 
                 }
             }
         }

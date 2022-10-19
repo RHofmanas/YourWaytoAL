@@ -6,6 +6,7 @@ page 50013 "Seminar Ledger Entries"
     Editable = false;
     SourceTable = "Seminar Ledger Entry";
     UsageCategory = Administration;
+    PromotedActionCategories = 'New,Process,Report,Entry';
 
     layout
     {
@@ -114,6 +115,31 @@ page 50013 "Seminar Ledger Entries"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Job Ledger Entry No. field.';
                 }
+            }
+        }
+    }
+    actions
+    {
+        area(navigation)
+        {
+            action("&Navigate")
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'Find entries...';
+                Image = Navigate;
+                Promoted = true;
+                PromotedCategory = Category4;
+                ShortCutKey = 'Ctrl+Alt+Q';
+                ToolTip = 'Find entries and documents that exist for the document number and posting date on the selected document. (Formerly this action was named Navigate.)';
+
+                trigger OnAction()
+                var
+                    Navigate: Page Navigate;
+                    SeminarLedgerEntry: Record "Seminar Ledger Entry";
+                begin
+                    Navigate.SetDoc(SeminarLedgerEntry."Posting Date", SeminarLedgerEntry."Document No.");
+                    Navigate.Run();
+                end;
             }
         }
     }

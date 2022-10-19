@@ -194,7 +194,7 @@ page 50009 "Seminar Registration"
                 action(Posting)
                 {
                     ApplicationArea = Suite;
-                    Caption = 'P&post';
+                    Caption = 'P&ost';
                     Image = Post;
                     Promoted = true;
                     PromotedIsBig = true;

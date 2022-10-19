@@ -194,7 +194,7 @@ codeunit 50020 "Seminar-Post"
     end;
     #endregion
 
-    #region fra Michael
+    #region functions
     local procedure PostSeminarJnlLine(OptionType: Enum "Option Type"; JobLedgerEntryNo: Integer): Integer
     begin
         SeminarJnlLine.Init();
@@ -250,9 +250,7 @@ codeunit 50020 "Seminar-Post"
 
         exit(SeminarJnlPostLine.RunWithCheck(SeminarJnlLine));
     end;
-    #endregion
 
-    #region
     local procedure PostCharge()
     begin
         SeminarCharge.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
@@ -263,7 +261,7 @@ codeunit 50020 "Seminar-Post"
                 JobLedgEntryNo := 0;
             until SeminarCharge.Next() = 0;
     end;
-    #endregion
+    #endregion functions
     var
         SeminarRegHeader: Record "Seminar Registration Header";
         SeminarRegLine: Record "Seminar Registration Line";

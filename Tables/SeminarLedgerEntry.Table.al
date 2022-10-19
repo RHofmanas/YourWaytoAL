@@ -3,6 +3,7 @@ table 50009 "Seminar Ledger Entry"
     Caption = 'Seminar Ledger Entry';
     DataClassification = ToBeClassified;
     LookupPageId = "Seminar Ledger Entries";
+    DrillDownPageId = "Seminar Ledger Entries";
 
     fields
     {
@@ -179,6 +180,10 @@ table 50009 "Seminar Ledger Entry"
 
         }
         key(key3; "Bill-to Customer No.", "Seminar Registration No.", "Charge Type", "Participant Contact No.")
+        {
+
+        }
+        key(key4; "Document No.", "Posting Date")
         {
 
         }

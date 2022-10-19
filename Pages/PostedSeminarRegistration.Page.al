@@ -155,6 +155,25 @@ page 50018 "Posted Seminar Registration"
                     CurrPage.Update();
                 end;
             }
+            action("&Navigate")
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'Find entries...';
+                Image = Navigate;
+                Promoted = true;
+                PromotedCategory = Category4;
+                ShortCutKey = 'Ctrl+Alt+Q';
+                ToolTip = 'Find entries and documents that exist for the document number and posting date on the selected document. (Formerly this action was named Navigate.)';
+
+                trigger OnAction()
+                var
+                    Navigate: Page Navigate;
+                    PostedSeminarRegHeader: Record "Posted Seminar Reg. Header";
+                begin
+                    Navigate.SetDoc(PostedSeminarRegHeader."Posting Date", PostedSeminarRegHeader."No.");
+                    Navigate.Run();
+                end;
+            }
         }
     }
     trigger OnAfterGetRecord()
