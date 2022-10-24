@@ -15,21 +15,25 @@ page 50004 "Seminar Room List"
                 {
                     Caption = 'Code';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Code field.';
                 }
                 field("Name"; rec.Name)
                 {
                     Caption = 'Name';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Name field.';
                 }
                 field("Maximum Participants"; rec."Maximum Participants")
                 {
                     Caption = 'Maximum Participants';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Maximum Participants field.';
                 }
                 field("Resource No."; rec."Resource No.")
                 {
                     Caption = 'Resource No.';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Resource No. field.';
                 }
             }
         }
@@ -67,6 +71,7 @@ page 50004 "Seminar Room List"
                         RunPageLink =
                         "Table Name" = const("Seminar Room"),
                         "No." = field(Code);
+                        ToolTip = 'Executes the Comments action.';
                     }
                     action("Extended Texts")
                     {
@@ -77,6 +82,7 @@ page 50004 "Seminar Room List"
                         RunPageLink =
                         "Table Name" = const("Seminar Room"),
                         "No." = field(Code);
+                        ToolTip = 'Executes the Extended Texts action.';
                     }
                 }
             }

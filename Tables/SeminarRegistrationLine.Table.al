@@ -1,8 +1,9 @@
 table 50005 "Seminar Registration Line"
 {
     Caption = 'Seminar Registration Line';
-    DataClassification = ToBeClassified;
+    // DataClassification = ToBeClassified;
     LookupPageId = "Seminar Registration Subpage";
+
 
     fields
     {

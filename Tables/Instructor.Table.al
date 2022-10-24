@@ -1,8 +1,9 @@
 table 50001 Instructor
 {
     Caption = 'Instructor';
-    DataClassification = ToBeClassified;
+    DataClassification = SystemMetadata;
     LookupPageId = Instructors;
+    DrillDownPageId = Instructors;
 
     fields
     {
@@ -30,7 +31,7 @@ table 50001 Instructor
             TableRelation = Resource where(Type = const(Person));
             trigger OnValidate()
             begin
-                if Resource.get("Resource No.") then
+                if Resource.Get("Resource No.") then
                     Name := Resource.Name
                 else
                     Name := '';
@@ -43,7 +44,7 @@ table 50001 Instructor
             TableRelation = Contact;
             trigger OnValidate()
             begin
-                if Contact.get("Contact No.") then
+                if Contact.Get("Contact No.") then
                     Name := Contact.Name;
             end;
         }

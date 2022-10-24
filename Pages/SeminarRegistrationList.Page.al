@@ -5,6 +5,7 @@ page 50010 "Seminar Registration List"
     SourceTable = "Seminar Registration Header";
     Editable = false;
     CardPageId = "Seminar Registration";
+    AutoSplitKey = true;
 
     layout
     {
@@ -66,6 +67,7 @@ page 50010 "Seminar Registration List"
                 Image = BookingsLogo;
                 ApplicationArea = Comments;
                 RunObject = Page "Seminar Registration";
+                ToolTip = 'Executes the Seminar Registration action.';
             }
             action("Comments")
             {
@@ -73,6 +75,7 @@ page 50010 "Seminar Registration List"
                 ApplicationArea = Comments;
                 Image = ViewComments;
                 RunObject = Page "Comment Sheet";
+                ToolTip = 'Executes the Comments action.';
             }
             action(Charges)
             {
@@ -80,6 +83,7 @@ page 50010 "Seminar Registration List"
                 Caption = 'Charges';
                 Image = Calculate;
                 RunObject = Page "Seminar Charges";
+                ToolTip = 'Executes the Charges action.';
             }
             action(Posting) // added page 185
             {

@@ -5,6 +5,7 @@ page 50016 "Posted Seminar Reg. Subpage"
     Editable = false;
     SourceTable = "Posted Seminar Reg. Line";
     CardPageId = "Posted Seminar Registration";
+    AutoSplitKey = true;
 
     layout
     {

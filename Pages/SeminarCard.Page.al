@@ -16,6 +16,7 @@ page 50005 "Seminar Card"
                 {
                     Caption = 'No.';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the No. field.';
                     trigger OnAssistEdit()
                     begin
                         if Rec.AssistEdit() then
@@ -26,36 +27,43 @@ page 50005 "Seminar Card"
                 {
                     Caption = 'Name';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Name field.';
                 }
                 field("Seminar Duration"; Rec."Seminar Duration")
                 {
                     Caption = 'Seminar Duration';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Seminar Duration field.';
                 }
                 field("Search Name"; Rec."Search Name")
                 {
                     Caption = 'Search Name';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Search Name field.';
                 }
                 field("Minimum Participants"; Rec."Minimum Participants")
                 {
                     Caption = 'Minimum Participants';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Minimum Participants field.';
                 }
                 field("Maximum Participants"; Rec."Maximum Participants")
                 {
                     Caption = 'Maximimum Participants';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Maximimum Participants field.';
                 }
                 field(Blocked; Rec.Blocked)
                 {
                     Caption = 'Blocked';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Blocked field.';
                 }
                 field("Last Date Modified"; Rec."Last Date Modified")
                 {
                     Caption = 'Last Date Modified';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Last Date Modified field.';
                 }
 
             }
@@ -66,21 +74,25 @@ page 50005 "Seminar Card"
                 {
                     Caption = 'Seminar Price';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Seminar Price field.';
                 }
                 field("Job No."; Rec."Job No.")
                 {
                     Caption = 'Job No.';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Job No. field.';
                 }
                 field("Gen. Prod. Posting Group"; Rec."Gen. Prod. Posting Group")
                 {
                     Caption = 'Gen. Prod. Posting Group';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Gen. Prod. Posting Group field.';
                 }
                 field("VAT Prod. Posting Group"; Rec."VAT Prod. Posting Group")
                 {
                     Caption = 'VAT Prod. Posting Group';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the VAT Prod. Posting Group field.';
                 }
             }
         }
@@ -112,6 +124,7 @@ page 50005 "Seminar Card"
                     Image = ViewComments;
                     RunObject = Page "Comment Sheet";
                     RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
+                    ToolTip = 'Executes the Comments action.';
                 }
                 action("Extended Texts")
                 {
@@ -120,6 +133,7 @@ page 50005 "Seminar Card"
                     Image = Text;
                     RunObject = Page "Extended Text List";
                     RunPageLink = "Table Name" = const("Seminar"), "No." = field("No.");
+                    ToolTip = 'Executes the Extended Texts action.';
                 }
             }
             group(SeminarManagement)
@@ -131,6 +145,7 @@ page 50005 "Seminar Card"
                     Caption = 'Entries';
                     ApplicationArea = All;
                     RunObject = Page "Seminar Ledger Entries";
+                    ToolTip = 'Executes the Entries action.';
                     //RunPageLink = "Seminar No." = field("No.");// "Posting Date" = ;
                 }
                 action(SeminarRegistrations)
@@ -138,6 +153,7 @@ page 50005 "Seminar Card"
                     Caption = 'Registrations';
                     ApplicationArea = All;
                     RunObject = Page "Seminar Registration";
+                    ToolTip = 'Executes the Registrations action.';
                     //RunPageLink = 
                 }
             }

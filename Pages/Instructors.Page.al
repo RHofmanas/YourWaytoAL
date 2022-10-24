@@ -4,6 +4,7 @@ page 50001 Instructors
     Caption = 'Instructors';
     PageType = List;
     SourceTable = Instructor;
+
     UsageCategory = Administration;
 
     layout

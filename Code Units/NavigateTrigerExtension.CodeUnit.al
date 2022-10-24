@@ -41,9 +41,9 @@ codeunit 50003 "Navigate Triger Extension"
             Database::"Seminar Ledger Entry":
                 begin
                     SeminarLedgEntry.Reset();
-                    SeminarLedgEntry.SetCurrentKey("Document No.", "Posting date");
+                    SeminarLedgEntry.SetCurrentKey("Document No.", "Posting Date");
                     SeminarLedgEntry.SetFilter("Document No.", DocNoFilter);
-                    SeminarLedgEntry.SetFilter("Posting date", PostingDateFilter);
+                    SeminarLedgEntry.SetFilter("Posting Date", PostingDateFilter);
                     if TempDocumentEntry."No. of Records" = 1 then
                         Page.Run(Page::"Seminar Ledger Entries", SeminarLedgEntry)
                     else
@@ -51,7 +51,6 @@ codeunit 50003 "Navigate Triger Extension"
                 end;
         end;
     end;
-
 
     local procedure FindSeminarLedgerEntries(var DocumentEntry: Record "Document Entry"; DocNoFilter: Text; PostingDateFilter: Text)
     begin

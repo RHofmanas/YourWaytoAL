@@ -61,6 +61,7 @@ page 50014 "Seminar Registers"
                 Image = Register;
                 ApplicationArea = Suite;
                 RunObject = Codeunit "Seminar Reg.-Show Ledger";
+                ToolTip = 'Executes the Register action.';
             }
         }
     }

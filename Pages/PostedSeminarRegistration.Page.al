@@ -4,6 +4,7 @@ page 50018 "Posted Seminar Registration"
     PageType = Card;
     Editable = false;
     UsageCategory = Administration;
+    ApplicationArea = All;
     SourceTable = "Posted Seminar Reg. Header";
 
     layout
@@ -12,6 +13,7 @@ page 50018 "Posted Seminar Registration"
         {
             group(General)
             {
+                Caption = 'General';
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
@@ -70,6 +72,7 @@ page 50018 "Posted Seminar Registration"
             }
             group(Lines)
             {
+                Caption = 'Lines';
                 part("Posted Seminar Reg. Lines"; "Posted Seminar Reg. Subpage")
                 {
                     Caption = 'Posted Seminar Registrations';
@@ -79,6 +82,7 @@ page 50018 "Posted Seminar Registration"
             }
             group("Seminar Room")
             {
+                Caption = 'Seminar Room';
                 field("Seminar Room Code"; Rec."Seminar Room Code")
                 {
                     ApplicationArea = All;
@@ -112,12 +116,13 @@ page 50018 "Posted Seminar Registration"
             }
             group(Invoicing)
             {
+                Caption = 'Invoicing';
                 field("Seminar Price"; Rec."Seminar Price")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of Seminar Price.';
                 }
-                field("Job No."; Rec."Job No.")
+                field("Job No."; Rec."Job no.")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of Job No.';
@@ -136,6 +141,7 @@ page 50018 "Posted Seminar Registration"
                 Image = ViewComments;
                 RunObject = Page "Comment Sheet";
                 RunPageLink = "Table Name" = const("Posted Seminar Registration"), "No." = field("No.");
+                ToolTip = 'Executes the Comments action.';
 
                 trigger OnAction()
                 begin
@@ -149,6 +155,7 @@ page 50018 "Posted Seminar Registration"
                 Image = IssueFinanceCharge;
                 RunObject = Page "Seminar Charges";
                 RunPageLink = "Seminar Registration no." = field("No.");
+                ToolTip = 'Executes the Charges action.';
 
                 trigger OnAction()
                 begin
@@ -167,8 +174,8 @@ page 50018 "Posted Seminar Registration"
 
                 trigger OnAction()
                 var
-                    Navigate: Page Navigate;
                     PostedSeminarRegHeader: Record "Posted Seminar Reg. Header";
+                    Navigate: Page "Navigate";
                 begin
                     Navigate.SetDoc(PostedSeminarRegHeader."Posting Date", PostedSeminarRegHeader."No.");
                     Navigate.Run();

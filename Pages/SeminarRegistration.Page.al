@@ -169,41 +169,48 @@ page 50009 "Seminar Registration"
     {
         area(Processing)
         {
-            group("Related Information")
+            action(Comments)
             {
-                caption = 'Related Information';
-                Image = RelatedInformation;
-
-                action("Comments")
-                {
-                    Caption = 'Comments';
-                    ApplicationArea = Comments;
-                    Image = ViewComments;
-                    RunObject = Page "Comment Sheet";
-                    RunPageLink = "Table Name" = const("Seminar Registration Header"), "No." = field("No.");
-                }
-                action(Charges)
-                {
-                    ApplicationArea = Suite;
-                    Caption = 'Charges';
-                    Image = IssueFinanceCharge;
-                    RunObject = Page "Seminar Charges";
-                    RunPageLink = "Seminar Registration no." = field("No.");
-                    ToolTip = 'View the Seminar Charges for the record';
-                }
-                action(Posting)
-                {
-                    ApplicationArea = Suite;
-                    Caption = 'P&ost';
-                    Image = Post;
-                    Promoted = true;
-                    PromotedIsBig = true;
-                    PromotedCategory = Process;
-                    ShortCutKey = 'F9';
-                    RunObject = Codeunit "Seminar-Post";
-                    ToolTip = 'Post Seminar';
-                }
+                Caption = 'Comments';
+                ApplicationArea = Comments;
+                Image = ViewComments;
+                RunObject = Page "Comment Sheet";
+                RunPageLink = "Table Name" = const("Seminar Registration Header"), "No." = field("No.");
+                ToolTip = 'Executes the Comments action.';
             }
+            action(Charges)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Charges';
+                Image = IssueFinanceCharge;
+                RunObject = Page "Seminar Charges";
+                RunPageLink = "Seminar Registration no." = field("No.");
+                ToolTip = 'View the Seminar Charges for the record';
+            }
+            action(Posting)
+            {
+                ApplicationArea = Suite;
+                Caption = 'P&ost';
+                Image = Post;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                ShortCutKey = 'F9';
+                RunObject = Codeunit "Seminar-Post";
+                ToolTip = 'Post Seminar';
+            }
+            action(Print)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Print';
+                Image = Print;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                RunObject = Report "Participant list";
+                ToolTip = 'Executes the Print action.';
+            }
+
         }
     }
 }

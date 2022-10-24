@@ -1,15 +1,15 @@
 table 50003 Seminar
 {
     Caption = 'Seminar';
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
     LookupPageId = "Seminar List";
+    DrillDownPageId = "Seminar List";
 
     fields
     {
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             var
                 SeminarSetup: Record "Seminar Setup";
@@ -25,7 +25,6 @@ table 50003 Seminar
         field(2; Name; Text[80])
         {
             Caption = 'Name';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
                 if ("Search Name" = UpperCase(xRec.Name)) or ("Search Name" = '') then
@@ -35,13 +34,11 @@ table 50003 Seminar
         field(3; "Seminar Duration"; Decimal)
         {
             Caption = 'Seminar Duration';
-            DataClassification = ToBeClassified;
             DecimalPlaces = 1 : 0;
         }
         field(4; "Minimum Participants"; Integer)
         {
             Caption = 'Minimum Participants';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
                 MinMaxParticipantsCheck()
@@ -50,7 +47,6 @@ table 50003 Seminar
         field(5; "Maximum Participants"; Integer)
         {
             Caption = 'Maximum Participants';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
                 MinMaxParticipantsCheck()
@@ -59,28 +55,25 @@ table 50003 Seminar
         field(6; "Search Name"; Code[80])
         {
             Caption = 'Search Name';
-            DataClassification = ToBeClassified;
         }
         field(7; Blocked; Boolean)
         {
             Caption = 'Blocked';
-            DataClassification = ToBeClassified;
         }
         field(8; "Last Date Modified"; Date)
         {
             Caption = 'Last Date Modified';
-            DataClassification = ToBeClassified;
         }
         field(9; Comment; Boolean)
         {
             Caption = 'Comment';
+            Editable = false;
             FieldClass = FlowField;
-            CalcFormula = exist("Comment Line" WHERE("Table Name" = filter("Seminar")));
+            CalcFormula = exist("Comment Line" where("Table Name" = filter("Seminar")));
         }
         field(10; "Job No."; Code[20])
         {
             Caption = 'Job No.';
-            DataClassification = ToBeClassified;
             TableRelation = Job;
             trigger OnValidate()
             var
@@ -93,13 +86,11 @@ table 50003 Seminar
         field(11; "Seminar Price"; Decimal)
         {
             Caption = 'Seminar Price';
-            DataClassification = ToBeClassified;
             AutoFormatType = 1;
         }
         field(12; "Gen. Prod. Posting Group"; Code[10])
         {
             Caption = 'Gen. Prod. Posting Group';
-            DataClassification = ToBeClassified;
             TableRelation = "Gen. Product Posting Group";
             trigger OnValidate()
             var
@@ -115,13 +106,11 @@ table 50003 Seminar
         field(13; "VAT Prod. Posting Group"; Code[10])
         {
             Caption = 'VAT Prod. Posting Group';
-            DataClassification = ToBeClassified;
             TableRelation = "VAT Product Posting Group";
         }
-        field(14; "No. Series"; Code[10])
+        field(14; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
-            DataClassification = ToBeClassified;
             TableRelation = "No. Series";
         }
     }

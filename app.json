@@ -17,7 +17,7 @@
   "idRanges": [
     {
       "from": 50000,
-      "to": 50149
+      "to": 99999
     }
   ],
   "resourceExposurePolicy": {
@@ -26,5 +26,6 @@
     "includeSourceInSymbolFile": false
   },  
   "runtime": "9.0",
-  "features": [ "TranslationFile", "GenerateCaptions" ]
+  "features": [ "TranslationFile", "GenerateCaptions" ],
+  "target": "OnPrem"
 }

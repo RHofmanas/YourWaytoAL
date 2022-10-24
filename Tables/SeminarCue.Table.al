@@ -1,19 +1,20 @@
 table 50007 "Seminar Cue"
 {
     Caption = 'Seminar Cue';
-    DataClassification = ToBeClassified;
+    DataClassification = AccountData;
     LookupPageId = "Seminar Activities";
 
     fields
     {
-        field(1; "Code"; Code[10])
+        field(1; Code; Code[10])
         {
             Caption = 'Code';
-            DataClassification = ToBeClassified;
+            NotBlank = true;
         }
         field(2; "Active Seminars"; Integer)
         {
             Caption = 'Active Seminars';
+            Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("Seminar Registration Header"
                 where(Status = const(Registration)));
@@ -21,6 +22,7 @@ table 50007 "Seminar Cue"
         field(3; "Todays Seminars"; Integer)
         {
             Caption = 'Todays Seminars';
+            Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("Seminar Registration Header"
                 where(Status = const(Registration), "Starting Date" = field("Today Date filter")));
@@ -28,6 +30,7 @@ table 50007 "Seminar Cue"
         field(4; "Upcoming Seminars"; Integer)
         {
             Caption = 'Upcoming Seminars';
+            Editable = false;
             FieldClass = FlowField;
             CalcFormula = count("Seminar Registration Header"
                 where(Status = const(Registration), "Starting Date" = field("Next Week Date Filter")));
