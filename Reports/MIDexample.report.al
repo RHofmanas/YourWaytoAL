@@ -31,11 +31,11 @@ report 50004 "MID example"
             column(SeminarRoomName; "Seminar Room Name")
             {
             }
-            column(COMPANYNAME; COMPANYPROPERTY.DisplayName)
+            column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
             {
 
             }
-            column(ReportCaption; ReportCaption)
+            column(ReportCaption; ReportCaptionLbl)
             {
 
             }
@@ -87,5 +87,5 @@ report 50004 "MID example"
         }
     }
     var
-        ReportCaption: Label 'Participant List';
+        ReportCaptionLbl: label 'Participant List';
 }

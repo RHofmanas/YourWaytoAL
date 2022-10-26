@@ -13,7 +13,7 @@ table 50001 Instructor
             DataClassification = SystemMetadata;
             NotBlank = true;
         }
-        field(2; Name; Text[80])
+        field(2; Name; Text[100])
         {
             Caption = 'Name';
             DataClassification = SystemMetadata;

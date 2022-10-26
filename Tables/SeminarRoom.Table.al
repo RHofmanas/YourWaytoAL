@@ -177,5 +177,7 @@ table 50000 "Seminar Room"
     var
         PostCode: Record "Post Code";
         Resource: Record Resource;
+#pragma warning disable AA0204
         Contact: Record Contact;
+#pragma warning restore AA0204
 }

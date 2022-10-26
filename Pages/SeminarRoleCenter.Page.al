@@ -94,7 +94,7 @@ page 50012 "Seminar Role Center"
                     Caption = 'Report Selections';
                     ApplicationArea = All;
                     ToolTip = 'Executes the Report Selections action.';
-                    RunObject = Page "Report Selection-Seminar";
+                    RunObject = page "Report Selection-Seminar";
                 }
             }
         }
@@ -104,35 +104,35 @@ page 50012 "Seminar Role Center"
             {
                 Caption = 'Customers';
                 ApplicationArea = All;
-                RunObject = Page "Customer List";
+                RunObject = page "Customer List";
                 ToolTip = 'Executes the Customers action.';
             }
             action(SeminarList)
             {
                 Caption = 'Seminars';
                 ApplicationArea = All;
-                RunObject = Page "Seminar List";
+                RunObject = page "Seminar List";
                 ToolTip = 'Executes the Seminars action.';
             }
             action(SeminarRoomList)
             {
                 Caption = 'Seminar Rooms';
                 ApplicationArea = All;
-                RunObject = Page "Seminar Room List";
+                RunObject = page "Seminar Room List";
                 ToolTip = 'Executes the Seminar Rooms action.';
             }
             action(SeminarRegistrationList)
             {
                 Caption = 'Seminar Registrations';
                 ApplicationArea = All;
-                RunObject = Page "Seminar Registration List";
+                RunObject = page "Seminar Registration List";
                 ToolTip = 'Executes the Seminar Registrations action.';
             }
             action(SalesInvoiceList)
             {
                 Caption = 'Sales Invoices';
                 ApplicationArea = All;
-                RunObject = Page "Sales Invoice List";
+                RunObject = page "Sales Invoice List";
                 ToolTip = 'Executes the Sales Invoices action.';
             }
         }
@@ -142,16 +142,17 @@ page 50012 "Seminar Role Center"
             {
                 Caption = 'Seminar';
                 ApplicationArea = All;
-                RunObject = Page "Seminar List";
+                RunObject = page "Seminar List";
                 ToolTip = 'Executes the Seminar action.';
             }
             action(NewSeminarRegistration)
             {
                 Caption = 'Seminar Registration';
                 ApplicationArea = All;
-                RunObject = Page "Seminar Registration";
+                RunObject = page "Seminar Registration";
                 ToolTip = 'Executes the Seminar Registration action.';
             }
+            /*
             action(NewSalesInvoice)
             {
                 Caption = 'Sales Invoice';
@@ -164,7 +165,9 @@ page 50012 "Seminar Role Center"
                 ApplicationArea = All;
                 ToolTip = 'Executes the Find Entries action.';
             }
+            */
         }
+        /*
         area(Reporting)
         {
             group(Reports)
@@ -175,21 +178,24 @@ page 50012 "Seminar Role Center"
                     Caption = 'Seminar Reg. - Participant List';
                     ApplicationArea = All;
                     ToolTip = 'Executes the Seminar Reg. - Participant List action.';
-                    //RunObject = Page "Seminar Reg. Participant List";
+                    //RunObject = page "Seminar Reg. Participant List";
                 }
                 action("Seminar Reg. Participant Certificate")
                 {
                     Caption = 'Seminar Reg. Participant Certificate';
                     ApplicationArea = All;
                     ToolTip = 'Executes the Seminar Reg. Participant Certificate action.';
-                    //RunObject = Page "Seminar Reg. Part. Certificate";
+                    //RunObject = page "Seminar Reg. Part. Certificate";
                 }
             }
         }
+        */
     }
 }
 
+#pragma warning disable AA0215
 profile "Seminar Profile"
+#pragma warning restore AA0215
 {
     Description = 'Some internal comment that only Dev can see';
     Caption = 'Seminar Profile';

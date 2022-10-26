@@ -15,6 +15,7 @@ page 50019 "Report Selection-Seminar"
             {
                 Caption = 'Usage';
                 ApplicationArea = Basic, Suite;
+                ToolTip = 'Specifies the value of the Usage field.';
 
                 trigger OnValidate()
                 begin

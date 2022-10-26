@@ -29,7 +29,7 @@ table 50011 "Posted Seminar Reg. Header"
             Caption = 'Instructor Code';
             TableRelation = Instructor;
         }
-        field(6; "Instructor Name"; Text[80])
+        field(6; "Instructor Name"; Text[100])
         {
             Caption = 'Instructor Name';
             Editable = false;

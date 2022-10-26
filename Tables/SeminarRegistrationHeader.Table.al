@@ -35,7 +35,9 @@ table 50004 "Seminar Registration Header"
             trigger OnValidate()
             var
                 Seminar: Record Seminar;
+#pragma warning disable AA0470
                 SeminarRegLineExistsErrLbl: Label 'You can not change the field %1, because one or more %2 exists';
+#pragma warning restore AA0470
             begin
                 if (xRec."Seminar No." <> '') and (Rec."Seminar No." <> xRec."Seminar No.") then begin
                     SeminarRegLine.Reset();
@@ -60,7 +62,7 @@ table 50004 "Seminar Registration Header"
                     Rec."Seminar Name" := '';
             end;
         }
-        field(4; "Seminar Name"; Text[50])
+        field(4; "Seminar Name"; Text[80])
         {
             Caption = 'Seminar Name';
         }
@@ -78,7 +80,7 @@ table 50004 "Seminar Registration Header"
             end;
         }
 
-        field(6; "Instructor Name"; Text[80])
+        field(6; "Instructor Name"; Text[100])
         {
             Caption = 'Instructor Name';
             Editable = false;
@@ -110,7 +112,9 @@ table 50004 "Seminar Registration Header"
             trigger OnValidate()
             var
                 SeminarRoom: Record "Seminar Room";
-                MaxParticipantsConfirm: label '%1 for %2 are %3. The %4 only allows %5 participants. Do you want to change %1?';
+#pragma warning disable AA0470
+                MaxParticipantsConfirmLbl: label '%1 for %2 are %3. The %4 only allows %5 participants. Do you want to change %1?';
+#pragma warning restore AA0470
             begin
                 if SeminarRoom.Get("Seminar Room Code") then begin
                     "Seminar Room Name" := SeminarRoom.Name;
@@ -120,13 +124,11 @@ table 50004 "Seminar Registration Header"
                     "Seminar Room Post Code" := SeminarRoom."Post Code";
                     if (CurrFieldNo <> 0) then
                         if (SeminarRoom."Maximum Participants" <> 0) and
-                        (SeminarRoom."Maximum Participants" < Rec."Maximum Participants") then begin
-                            if Confirm(MaxParticipantsConfirm, true, Rec.FieldCaption("Maximum Participants"),
+                        (SeminarRoom."Maximum Participants" < Rec."Maximum Participants") then
+                            if Confirm(MaxParticipantsConfirmLbl, true, Rec.FieldCaption("Maximum Participants"),
                             Rec.TableCaption, "Maximum Participants", SeminarRoom.TableCaption, SeminarRoom."Maximum Participants")
                                then
-                                "Maximum Participants" := SeminarRoom."Maximum Participants";
-                        end;
-
+                                "Maximum Participants" := SeminarRoom."Maximum Participants"
                 end else begin
                     "Seminar Room Name" := '';
                     "Seminar Room Address" := '';
@@ -163,7 +165,7 @@ table 50004 "Seminar Registration Header"
                 PostCode: Record "Post Code";
                 Country: Record "Country/Region";
             begin
-                PostCode.LookUpPostCode(Rec."Seminar Room City", Rec."Seminar Room Post Code",
+                PostCode.LookupPostCode(Rec."Seminar Room City", Rec."Seminar Room Post Code",
                 Country."County Name", Country.Code);
             end;
         }
@@ -182,7 +184,9 @@ table 50004 "Seminar Registration Header"
             AutoFormatType = 1;
             trigger OnValidate()
             var
-                ConfirmPriceChange: Label 'Do you want to change the field 1% for table %2?';
+#pragma warning disable AA0470
+                ConfirmPriceChangeLbl: label 'Do you want to change the field 1% for table %2?';
+#pragma warning restore AA0470
             begin
                 if (Rec."Seminar Price" <> xRec."Seminar Price") and
                 (Rec.Status <> Rec.Status::Canceled) then begin
@@ -190,7 +194,7 @@ table 50004 "Seminar Registration Header"
                     SeminarRegLine.SetRange("Seminar Registration No.", "No.");
                     SeminarRegLine.SetRange(Registered, false);
                     if SeminarRegLine.FindSet(false, false) then
-                        if Confirm(ConfirmPriceChange, false, FieldCaption("Seminar Price"), SeminarRegLine.TableCaption) then begin
+                        if Confirm(ConfirmPriceChangeLbl, false, FieldCaption("Seminar Price"), SeminarRegLine.TableCaption) then begin
                             repeat
                                 SeminarRegLine.Validate("Seminar Price", "Seminar Price");
                                 SeminarRegLine.Modify();
@@ -235,8 +239,9 @@ table 50004 "Seminar Registration Header"
             var
                 Job: Record Job;
                 SeminarCharge: Record "Seminar Charge";
-                ConfirmManegement: codeunit "Confirm Management";
-                ConfirmChangeJobNo: Label 'Changing the 1% will change all records in the %2 table. Do you want to proceed?';
+#pragma warning disable AA0470
+                ConfirmChangeJobNoLbl: label 'Changing the 1% will change all records in the %2 table. Do you want to proceed?';
+#pragma warning restore AA0470
             begin
                 if Job.Get("Job No.") then
                     Job.TestField(Blocked, Job.Blocked::" ");
@@ -245,14 +250,14 @@ table 50004 "Seminar Registration Header"
                     SeminarCharge.Reset();
                     SeminarCharge.SetCurrentKey("Job No.");
                     SeminarCharge.SetRange("Job No.", xRec."Job No.");
-                    if SeminarCharge.FindSet(true, true) then begin
-                        if Confirm(ConfirmChangeJobNo, true, FieldCaption("Job No."), SeminarCharge.TableCaption) then begin
+                    if SeminarCharge.FindSet(true, true) then
+                        if Confirm(ConfirmChangeJobNoLbl, true, FieldCaption("Job No."), SeminarCharge.TableCaption) then begin
                             SeminarCharge.ModifyAll("Job No.", "Job No.");
                             Modify();
-                        end else begin
+                        end else
                             "Job No." := xRec."Job No.";
-                        end;
-                    end;
+
+
                 end;
             end;
         }
@@ -261,13 +266,13 @@ table 50004 "Seminar Registration Header"
             Caption = 'Reason Code';
             TableRelation = "Reason Code";
         }
-        field(25; "No. Series"; Code[10])
+        field(25; "No. Series"; Code[20])
         {
             Caption = 'No. Series';
             TableRelation = "No. Series";
             Editable = false;
         }
-        field(26; "Posting No. Series"; Code[10])
+        field(26; "Posting No. Series"; Code[20])
         {
             Caption = 'Posting No. Series';
             TableRelation = "No. Series";
@@ -321,10 +326,9 @@ table 50004 "Seminar Registration Header"
 
         }
     }
+#pragma warning disable AA0072
     procedure AssistEdit(OldSeminarRegHeader: Record "Seminar Registration Header"): Boolean
-    var
-        SeminarSetup: Record "Seminar Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+#pragma warning restore AA0072
     begin
         OldSeminarRegHeader := Rec;
         SeminarSetup.Get();
@@ -363,8 +367,12 @@ table 50004 "Seminar Registration Header"
     trigger OnDelete()
     var
         SeminarCharge: Record "Seminar Charge";
-        DeleteTextError: Label 'You can not delete %1 %2, because one or more %3 where %4 = %5 exists.';
-        SeminarChargeExistsError: Label 'You can not delete %1 %2, because one more %3 exists.';
+#pragma warning disable AA0074
+#pragma warning disable AA0470
+        DeleteTextError: label 'You can not delete %1 %2, because one or more %3 where %4 = %5 exists.';
+        SeminarChargeExistsError: label 'You can not delete %1 %2, because one more %3 exists.';
+#pragma warning restore AA0470
+#pragma warning restore AA0074
     begin
         TestField(Status, Status::Canceled);
         SeminarRegLine.Reset();
@@ -389,7 +397,9 @@ table 50004 "Seminar Registration Header"
 
     trigger OnRename()
     var
-        ErrorMsgLbl: Label 'The record %1 can not be renamed';
+#pragma warning disable AA0470
+        ErrorMsgLbl: label 'The record %1 can not be renamed';
+#pragma warning restore AA0470
     begin
         Error(ErrorMsgLbl, TableCaption);
     end;
@@ -397,6 +407,8 @@ table 50004 "Seminar Registration Header"
     var
         SeminarSetup: Record "Seminar Setup";
         CommentLine: Record "Comment Line";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+#pragma warning disable AA0072
         SeminarRegLine: Record "Seminar Registration Line";
+#pragma warning restore AA0072
+        NoSeriesManagement: codeunit NoSeriesManagement;
 }

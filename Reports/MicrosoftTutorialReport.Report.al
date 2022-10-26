@@ -50,6 +50,7 @@ report 50103 "Microsoft Tutorial Report"
                     {
                         ApplicationArea = All;
                         Caption = 'Hide Blocked Customers?';
+                        ToolTip = 'Specifies the value of the Hide Blocked Customers? field.';
                     }
                 }
             }
@@ -57,5 +58,7 @@ report 50103 "Microsoft Tutorial Report"
 
     }
     var
+#pragma warning disable AA0204
         HideBlockedCustomers: Boolean;
+#pragma warning restore AA0204
 }

@@ -36,7 +36,7 @@ report 50000 "Participant List"
             column(COMPANYNAME; COMPANYPROPERTY.DisplayName())
             {
             }
-            column(ReportCaption; ReportCaption)
+            column(ReportCaption; ReportCaptionLbl)
             {
             }
             dataitem(SeminarRegistrationLine; "Seminar Registration Line")
@@ -82,5 +82,5 @@ report 50000 "Participant List"
     }
 
     var
-        ReportCaption: Label 'Participant List';
+        ReportCaptionLbl: label 'Participant List';
 }

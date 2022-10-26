@@ -194,12 +194,13 @@ table 50009 "Seminar Ledger Entry"
         SeminarLedgEntry."Starting Date" := SeminarJnlLine."Starting Date";
     end;
 
+    /*
     [IntegrationEvent(false, false)]
     local procedure AfterCopyFromSeminarJnlLine(sender: Codeunit "Seminar Jnl.-Post Line"; var
         SeminarLedgEntry: Record "Seminar Ledger Entry")
     begin
     end;
-
+    */
     var
         SeminarLedgEntry: Record "Seminar Ledger Entry";
 

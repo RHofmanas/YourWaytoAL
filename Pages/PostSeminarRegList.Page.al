@@ -62,6 +62,7 @@ page 50015 "Post. Seminar Reg. List"
                 Image = ViewComments;
                 RunObject = Page "Comment Sheet";
                 RunPageLink = "Table Name" = const("Posted Seminar Registration"), "No." = field("No.");
+                ToolTip = 'Executes the Comments action.';
 
                 trigger OnAction()
                 begin
@@ -75,6 +76,7 @@ page 50015 "Post. Seminar Reg. List"
                 Image = IssueFinanceCharge;
                 RunObject = Page "Seminar Charges";
                 RunPageLink = "Seminar Registration no." = field("No.");
+                ToolTip = 'Executes the Charges action.';
 
                 trigger OnAction()
                 begin
@@ -93,8 +95,8 @@ page 50015 "Post. Seminar Reg. List"
 
                 trigger OnAction()
                 var
-                    Navigate: Page Navigate;
                     PostedSeminarRegLine: Record "Posted Seminar Reg. Line";
+                    Navigate: page Navigate;
                 begin
                     Navigate.SetDoc(PostedSeminarRegLine."Register Date", PostedSeminarRegLine."Seminar Registration No.");
                     Navigate.Run();

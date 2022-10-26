@@ -93,9 +93,9 @@ table 50005 "Seminar Registration Line"
             MaxValue = 100;
             trigger OnValidate()
             begin
-                if "Seminar Price" = 0 then begin
-                    "Line Discount Amount" := 0;
-                end else begin
+                if "Seminar Price" = 0 then
+                    "Line Discount Amount" := 0
+                else begin
                     GLSetup.Get();
                     "Line Discount Amount" := Round("Line Discount %" * "Seminar Price" * 0.01,
                     GLSetup."Amount Rounding Precision")
@@ -109,9 +109,9 @@ table 50005 "Seminar Registration Line"
             AutoFormatType = 1;
             trigger OnValidate()
             begin
-                if "Seminar Price" = 0 then begin
-                    "Line Discount %" := 0;
-                end else begin
+                if "Seminar Price" = 0 then
+                    "Line Discount %" := 0
+                else begin
                     GLSetup.Get();
                     "Line Discount %" := Round("Line Discount Amount" / "Seminar Price" * 100,
                     GLSetup."Amount Rounding Precision")
@@ -130,12 +130,12 @@ table 50005 "Seminar Registration Line"
                 GLSetup.Get();
                 Amount := Round(Amount, GLSetup."Amount Rounding Precision");
                 "Line Discount Amount" := "Seminar Price" - Amount;
-                if "Seminar Price" = 0 then begin
-                    "Line Discount %" := 0;
-                end else begin
+                if "Seminar Price" = 0 then
+                    "Line Discount %" := 0
+                else
                     "Line Discount %" := Round("Line Discount Amount" / "Seminar Price" * 100,
-                    GLSetup."Amount Rounding Precision");
-                end;
+                        GLSetup."Amount Rounding Precision")
+
             end;
         }
         field(14; Registered; Boolean)
@@ -165,7 +165,7 @@ table 50005 "Seminar Registration Line"
     begin
         TestField(Registered, false);
     end;
-
+    /*
     local procedure GetSeminarRegHeader()
     begin
         if SeminarRegHeader."No." <> "Seminar Registration No." then
@@ -176,7 +176,7 @@ table 50005 "Seminar Registration Line"
     begin
         Amount := Round(("Seminar Price" / 100) * (100 - "Line Discount %"));
     end;
-
+    */
     local procedure UpdateAmount()
     begin
         GLSetup.Get();
@@ -185,9 +185,14 @@ table 50005 "Seminar Registration Line"
     end;
 
     var
+#pragma warning disable AA0137
         Contact: Record Contact;
-        SeminarRegHeader: Record "Seminar Registration Header";
+#pragma warning restore AA0137
 
+
+#pragma warning disable AA0072
+        SeminarRegHeader: Record "Seminar Registration Header";
         GLSetup: Record "General Ledger Setup";
+#pragma warning restore AA0072
 
 }

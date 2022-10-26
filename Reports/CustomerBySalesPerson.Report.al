@@ -10,7 +10,7 @@ report 50101 "Customer by Salesperson"
     {
         dataitem(Salesperson; "Salesperson/Purchaser")
         {
-            PrintOnlyIfDetail = True;
+            PrintOnlyIfDetail = true;
             RequestFilterFields = "Commission %";
             column(CustNoCaption; Customer.FieldCaption("No."))
             {
@@ -18,16 +18,16 @@ report 50101 "Customer by Salesperson"
             column(CustNameCaption; Customer.FieldCaption(Name))
             {
             }
-            column(PostCodeCityCaption; PostCodeCityCaption)
+            column(PostCodeCityCaption; PostCodeCityCaptionLbl)
             {
             }
             column(CustNoInvoiceAmountsCaption; Customer.FieldCaption("Invoice amounts"))
             {
             }
-            column(ReportCaption; ReportCaption)
+            column(ReportCaption; ReportCaptionLbl)
             {
             }
-            column(PageCaption; PageCaption)
+            column(PageCaption; PageCaptionLbl)
             {
             }
             column(UserID; UserID)
@@ -81,6 +81,7 @@ report 50101 "Customer by Salesperson"
                     {
                         Caption = 'Print active customers';
                         ApplicationArea = All;
+                        ToolTip = 'Specifies the value of the Print active customers field.';
                     }
                 }
             }
@@ -88,8 +89,10 @@ report 50101 "Customer by Salesperson"
     }
 
     var
+#pragma warning disable AA0204
         PrintOnlyCustomerWithSale: Boolean;
-        PostCodeCityCaption: Label 'Postcode/City';
-        ReportCaption: Label 'Customers by Salesperson';
-        PageCaption: Label 'Page';
+#pragma warning restore AA0204
+        PostCodeCityCaptionLbl: label 'Postcode/City';
+        ReportCaptionLbl: label 'Customers by Salesperson';
+        PageCaptionLbl: label 'Page';
 }

@@ -20,7 +20,7 @@ table 50002 "Seminar Setup"
             Caption = 'Seminar Registrant Nos.';
             TableRelation = "No. Series";
         }
-        field(4; "Posted Seminar Reg. Nos."; Code[10])
+        field(4; "Posted Seminar Reg. Nos."; Code[20])
         {
             Caption = 'Posted Seminar Reg. Nos.';
             TableRelation = "No. Series";

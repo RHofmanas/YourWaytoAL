@@ -58,7 +58,7 @@ page 50021 "Instructor Class Overview"
         JArray: JsonArray;
         data: JsonArray;
         JsonObj: JsonObject;
-        WorkLoad: Decimal;
+        // WorkLoad: Decimal;
         n: Integer;
     begin
         Clear(JArray);
@@ -97,7 +97,7 @@ page 50021 "Instructor Class Overview"
         if SeminarRegistrationHeader.FindSet() then
             repeat
                 WorkingDate.SetFilter("Period Start", '%1..', SeminarRegistrationHeader."Starting Date");
-                WorkingDate.FindFirst();
+                WorkingDate.FindSet();
                 for n := 1 to SeminarRegistrationHeader.Duration do begin
                     TempInstructorLoad.Init();
                     TempInstructorLoad."Instructor Code" := SeminarRegistrationHeader."Instructor Code";
