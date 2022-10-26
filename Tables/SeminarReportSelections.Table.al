@@ -1,7 +1,7 @@
 table 50014 "Seminar Report Selections"
 {
     Caption = 'Seminar Report Selections';
-    DataClassification = ToBeClassified;
+    DataClassification = SystemMetadata;
     DataPerCompany = false;
 
     fields
@@ -9,17 +9,14 @@ table 50014 "Seminar Report Selections"
         field(1; Usage; Enum "Seminar Report Selections")
         {
             Caption = 'Usage';
-            DataClassification = ToBeClassified;
         }
         field(2; Sequence; Code[10])
         {
             Caption = 'Sequence';
-            DataClassification = ToBeClassified;
         }
         field(3; "Report ID"; Integer)
         {
             Caption = 'Report ID';
-            DataClassification = ToBeClassified;
             TableRelation = Object.ID where(Type = const(Report));
             trigger OnValidate()
             begin

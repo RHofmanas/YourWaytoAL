@@ -1,7 +1,7 @@
 table 50004 "Seminar Registration Header"
 {
     Caption = 'Seminar Registration Header';
-    DataClassification = ToBeClassified;
+    DataClassification = SystemMetadata;
     LookupPageId = "Seminar Registration List";
     DrillDownPageId = "Seminar Registration List";
 
@@ -10,11 +10,10 @@ table 50004 "Seminar Registration Header"
         field(1; "No."; Code[20])
         {
             Caption = 'No.';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
                 if Rec."No." <> xRec."No." then begin
-                    SeminarSetup.Get;
+                    SeminarSetup.Get();
                     NoSeriesManagement.TestManual(SeminarSetup."Seminar Registrant Nos.");
                     "No. Series" := '';
                 end;
@@ -23,7 +22,6 @@ table 50004 "Seminar Registration Header"
         field(2; "Starting Date"; Date)
         {
             Caption = 'Starting Date';
-            DataClassification = ToBeClassified;
             trigger OnValidate()
             begin
                 if "Starting Date" <> xRec."Starting Date" then
@@ -33,7 +31,6 @@ table 50004 "Seminar Registration Header"
         field(3; "Seminar No."; Code[20])
         {
             Caption = 'Seminar No.';
-            DataClassification = ToBeClassified;
             TableRelation = Seminar;
             trigger OnValidate()
             var
@@ -66,12 +63,10 @@ table 50004 "Seminar Registration Header"
         field(4; "Seminar Name"; Text[50])
         {
             Caption = 'Seminar Name';
-            DataClassification = ToBeClassified;
         }
         field(5; "Instructor Code"; Code[10])
         {
             Caption = 'Instructor Code';
-            DataClassification = ToBeClassified;
             TableRelation = Instructor;
             trigger OnValidate()
             var
@@ -79,7 +74,7 @@ table 50004 "Seminar Registration Header"
             begin
                 if Instructor.Get("Instructor Code") then
                     if ("Instructor Code" <> '') and ("Instructor Code" <> xRec."Instructor Code") then
-                        "Instructor Name" := Instructor.Name;
+                        "Instructor Name" := Instructor.Name; // 
             end;
         }
 
@@ -94,33 +89,28 @@ table 50004 "Seminar Registration Header"
         field(7; Status; Enum "Seminar Reg. Status")
         {
             Caption = 'Status';
-            DataClassification = ToBeClassified;
         }
         field(8; "Duration"; Decimal)
         {
             Caption = 'Duration';
-            DataClassification = ToBeClassified;
             DecimalPlaces = 0 : 1;
         }
         field(9; "Maximum Participants"; Integer)
         {
             Caption = 'Maximum Participants';
-            DataClassification = ToBeClassified;
         }
         field(10; "Minimum Participants"; Integer)
         {
             Caption = 'Minimum Participants';
-            DataClassification = ToBeClassified;
         }
         field(11; "Seminar Room Code"; Code[10])
         {
             Caption = 'Seminar Room Code';
-            DataClassification = ToBeClassified;
             TableRelation = "Seminar Room";
             trigger OnValidate()
             var
                 SeminarRoom: Record "Seminar Room";
-                MaxParticipantsConfirm: Label '%1 for %2 are %3. The %4 only allows %5 participants. Do you want to change %1?';
+                MaxParticipantsConfirm: label '%1 for %2 are %3. The %4 only allows %5 participants. Do you want to change %1?';
             begin
                 if SeminarRoom.Get("Seminar Room Code") then begin
                     "Seminar Room Name" := SeminarRoom.Name;
@@ -148,18 +138,15 @@ table 50004 "Seminar Registration Header"
         }
         field(12; "Seminar Room Name"; Text[100])
         {
-            Caption = 'Seminar Room Name';
             DataClassification = ToBeClassified;
         }
         field(13; "Seminar Room Address"; Text[100])
         {
             Caption = 'Seminar Room Address';
-            DataClassification = ToBeClassified;
         }
         field(14; "Seminar Room Post Code"; Code[20])
         {
             Caption = 'Seminar Room Post Code';
-            DataClassification = ToBeClassified;
             TableRelation = "Post Code";
 
             trigger OnValidate()
@@ -183,18 +170,15 @@ table 50004 "Seminar Registration Header"
         field(15; "Seminar Room City"; Text[30])
         {
             Caption = 'Seminar Room City';
-            DataClassification = ToBeClassified;
         }
         field(16; "Seminar Room Phone No."; Text[30])
         {
             Caption = 'Seminar Room Phone No.';
-            DataClassification = ToBeClassified;
             ExtendedDatatype = PhoneNo;
         }
         field(17; "Seminar Price"; Decimal)
         {
             Caption = 'Seminar Price';
-            DataClassification = ToBeClassified;
             AutoFormatType = 1;
             trigger OnValidate()
             var
@@ -220,13 +204,11 @@ table 50004 "Seminar Registration Header"
         field(18; "Gen. Prod. Posting Group"; Code[10])
         {
             Caption = 'Gen. Prod. Posting Group';
-            DataClassification = ToBeClassified;
             TableRelation = "Gen. Product Posting Group";
         }
         field(19; "VAT Prod. Posting Group"; Code[10])
         {
             Caption = 'VAT Prod. Posting Group';
-            DataClassification = ToBeClassified;
             TableRelation = "VAT Product Posting Group";
         }
         field(20; Comment; Boolean)
@@ -240,22 +222,20 @@ table 50004 "Seminar Registration Header"
         field(21; "Posting Date"; Date)
         {
             Caption = 'Posting Date';
-            DataClassification = ToBeClassified;
         }
         field(22; "Document Date"; Date)
         {
             Caption = 'Document Date';
-            DataClassification = ToBeClassified;
         }
         field(23; "Job No."; Code[20])
         {
             Caption = 'Job No.';
-            DataClassification = ToBeClassified;
             TableRelation = Job;
             trigger OnValidate()
             var
                 Job: Record Job;
                 SeminarCharge: Record "Seminar Charge";
+                ConfirmManegement: codeunit "Confirm Management";
                 ConfirmChangeJobNo: Label 'Changing the 1% will change all records in the %2 table. Do you want to proceed?';
             begin
                 if Job.Get("Job No.") then
@@ -279,20 +259,17 @@ table 50004 "Seminar Registration Header"
         field(24; "Reason Code"; Code[10])
         {
             Caption = 'Reason Code';
-            DataClassification = ToBeClassified;
             TableRelation = "Reason Code";
         }
         field(25; "No. Series"; Code[10])
         {
             Caption = 'No. Series';
-            DataClassification = ToBeClassified;
             TableRelation = "No. Series";
             Editable = false;
         }
         field(26; "Posting No. Series"; Code[10])
         {
             Caption = 'Posting No. Series';
-            DataClassification = ToBeClassified;
             TableRelation = "No. Series";
 
             trigger OnValidate()
@@ -322,7 +299,6 @@ table 50004 "Seminar Registration Header"
         field(27; "Posting No."; Code[20])
         {
             Caption = 'Posting No.';
-            DataClassification = ToBeClassified;
         }
         field(40; "No. Printed"; Integer)
         {
@@ -339,6 +315,10 @@ table 50004 "Seminar Registration Header"
         key(key2; "Seminar Room Code")
         {
             SumIndexFields = Duration;
+        }
+        key(key3; "Instructor Code", "Starting Date")
+        {
+
         }
     }
     procedure AssistEdit(OldSeminarRegHeader: Record "Seminar Registration Header"): Boolean

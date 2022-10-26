@@ -154,7 +154,7 @@ page 50005 "Seminar Card"
                     ApplicationArea = All;
                     RunObject = Page "Seminar Registration";
                     ToolTip = 'Executes the Registrations action.';
-                    //RunPageLink = 
+                    //RunPageLink = "Seminar Registration";
                 }
             }
         }

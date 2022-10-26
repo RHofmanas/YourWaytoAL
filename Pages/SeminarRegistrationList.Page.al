@@ -97,6 +97,50 @@ page 50010 "Seminar Registration List"
                 RunObject = Codeunit "Seminar-Post(Yes/No)";
                 ToolTip = 'Post Seminar';
             }
+            action("Send E-mail Confirmations")
+            {
+                Caption = 'Confirmations';
+                ApplicationArea = Basic, Suite;
+                Image = Email;
+                Promoted = true;
+                PromotedCategory = Category5;
+                RunObject = Codeunit "Seminar Mail";
+                ToolTip = 'Executes the Confirmations action.';
+
+                trigger OnAction()
+                var
+                    SeminarRegHeader: Record "Seminar Registration Header";
+                    SeminarMail: Codeunit "Seminar Mail";
+                begin
+                    SeminarMail.SendAllConfirmations(SeminarRegHeader);
+                end;
+            }
+            action(XMLParticipantList)
+            {
+                ApplicationArea = All;
+                Caption = 'XML Participant List';
+                Image = XMLFile;
+                ToolTip = 'Executes the XML Participant List action.';
+
+                trigger OnAction()
+                var
+                    SeminarRegHeader: Record "Seminar Registration Header";
+                    SeminarXMLParticipantLIst: XmlPort "Sem. Reg.-Participant List";
+                begin
+                    SeminarRegHeader := Rec;
+                    SeminarRegHeader.SetRecFilter();
+                    SeminarXMLParticipantLIst.SetTableView(SeminarRegHeader);
+                    SeminarXMLParticipantLIst.Run();
+                end;
+            }
+            action(InstructorAllocation)
+            {
+                ApplicationArea = All;
+                Caption = 'Instructor Allocation';
+                Image = Allocate;
+                RunObject = Page "Instructor Class Overview";
+                ToolTip = 'Executes the Instructor Allocation action.';
+            }
         }
     }
 }

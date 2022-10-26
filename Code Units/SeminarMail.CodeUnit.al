@@ -36,7 +36,11 @@ codeunit 50006 "Seminar Mail"
 
     procedure SendAllConfirmations(SeminarRegHeader: Record "Seminar Registration Header")
     begin
-
+        SeminarRegLine.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
+        if SeminarRegLine.FindSet() then
+            repeat
+                NewConfirmationMessage(SeminarRegLine);
+            until SeminarRegLine.Next() = 0;
     end;
 
 }

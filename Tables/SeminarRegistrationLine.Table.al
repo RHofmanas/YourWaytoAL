@@ -1,7 +1,7 @@
 table 50005 "Seminar Registration Line"
 {
     Caption = 'Seminar Registration Line';
-    // DataClassification = ToBeClassified;
+    DataClassification = SystemMetadata;
     LookupPageId = "Seminar Registration Subpage";
 
 
@@ -10,18 +10,15 @@ table 50005 "Seminar Registration Line"
         field(1; "Seminar Registration No."; Code[20])
         {
             Caption = 'Seminar Registration No.';
-            DataClassification = ToBeClassified;
             TableRelation = "Seminar Registration Header";
         }
         field(2; "Line No."; Integer)
         {
             Caption = 'Line No.';
-            DataClassification = ToBeClassified;
         }
         field(3; "Bill-to Customer No."; Code[20])
         {
             Caption = 'Bill-to Customer No.';
-            DataClassification = ToBeClassified;
             TableRelation = Customer;
 
             trigger OnValidate()
@@ -33,7 +30,6 @@ table 50005 "Seminar Registration Line"
         field(4; "Participant Contact No."; Code[20])
         {
             Caption = 'Participant Contact No.';
-            DataClassification = ToBeClassified;
             TableRelation = Contact;
             trigger OnLookup()
             var
@@ -59,35 +55,30 @@ table 50005 "Seminar Registration Line"
             Caption = 'Participant Name';
             Editable = false;
             FieldClass = FlowField;
-            CalcFormula = lookup(Contact.Name where("No." = Field("Participant Contact No.")));
+            CalcFormula = lookup(Contact.Name where("No." = field("Participant Contact No.")));
         }
         field(6; "Register Date"; Date)
         {
             Caption = 'Register Date';
-            DataClassification = ToBeClassified;
             Editable = false;
         }
         field(7; "To Invoice"; Boolean)
         {
             Caption = 'To Invoice';
-            DataClassification = ToBeClassified;
             InitValue = true;
         }
         field(8; Participated; Boolean)
         {
             Caption = 'Participated';
-            DataClassification = ToBeClassified;
         }
         field(9; "Confirmation Date"; Date)
         {
             Caption = 'Confirmation Date';
-            DataClassification = ToBeClassified;
             Editable = false;
         }
         field(10; "Seminar Price"; Decimal)
         {
             Caption = 'Seminar Price';
-            DataClassification = ToBeClassified;
             AutoFormatType = 2;
             trigger OnValidate()
             begin
@@ -97,7 +88,6 @@ table 50005 "Seminar Registration Line"
         field(11; "Line Discount %"; Decimal)
         {
             Caption = 'Line Discount %';
-            DataClassification = ToBeClassified;
             DecimalPlaces = 0 : 5;
             MinValue = 0;
             MaxValue = 100;
@@ -116,7 +106,6 @@ table 50005 "Seminar Registration Line"
         field(12; "Line Discount Amount"; Decimal)
         {
             Caption = 'Line Discount Amount';
-            DataClassification = ToBeClassified;
             AutoFormatType = 1;
             trigger OnValidate()
             begin
@@ -133,7 +122,6 @@ table 50005 "Seminar Registration Line"
         field(13; Amount; Decimal)
         {
             Caption = 'Amount';
-            DataClassification = ToBeClassified;
             AutoFormatType = 1;
             trigger OnValidate()
             begin
@@ -153,7 +141,6 @@ table 50005 "Seminar Registration Line"
         field(14; Registered; Boolean)
         {
             Caption = 'Registered';
-            DataClassification = ToBeClassified;
             Editable = false;
         }
     }

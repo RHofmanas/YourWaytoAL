@@ -2,7 +2,10 @@ page 50009 "Seminar Registration"
 {
     Caption = 'Seminar Registration';
     PageType = Card;
+    UsageCategory = Administration;
+    ApplicationArea = All;
     SourceTable = "Seminar Registration Header";
+    Permissions = tabledata "Seminar Registration Header" = RIDM;
 
     layout
     {
@@ -10,6 +13,7 @@ page 50009 "Seminar Registration"
         {
             group(General)
             {
+                Caption = 'General';
                 field("No."; Rec."No.")
                 {
                     Caption = 'No.';
@@ -96,6 +100,7 @@ page 50009 "Seminar Registration"
             }
             group("Seminar Room")
             {
+                Caption = 'Seminar Room';
                 field("Seminar Room Code"; Rec."Seminar Room Code")
                 {
                     Caption = 'Seminar Room Code';
@@ -138,6 +143,7 @@ page 50009 "Seminar Registration"
             }
             group(Invoicing)
             {
+                Caption = 'Invoicing';
                 field("Seminar Price"; Rec."Seminar Price")
                 {
                     Caption = 'Seminar Price';
@@ -174,7 +180,7 @@ page 50009 "Seminar Registration"
                 Caption = 'Comments';
                 ApplicationArea = Comments;
                 Image = ViewComments;
-                RunObject = Page "Comment Sheet";
+                RunObject = page "Comment Sheet";
                 RunPageLink = "Table Name" = const("Seminar Registration Header"), "No." = field("No.");
                 ToolTip = 'Executes the Comments action.';
             }
@@ -183,7 +189,7 @@ page 50009 "Seminar Registration"
                 ApplicationArea = Suite;
                 Caption = 'Charges';
                 Image = IssueFinanceCharge;
-                RunObject = Page "Seminar Charges";
+                RunObject = page "Seminar Charges";
                 RunPageLink = "Seminar Registration no." = field("No.");
                 ToolTip = 'View the Seminar Charges for the record';
             }
@@ -196,7 +202,7 @@ page 50009 "Seminar Registration"
                 PromotedIsBig = true;
                 PromotedCategory = Process;
                 ShortCutKey = 'F9';
-                RunObject = Codeunit "Seminar-Post";
+                RunObject = codeunit "Seminar-Post";
                 ToolTip = 'Post Seminar';
             }
             action(Print)
@@ -207,10 +213,55 @@ page 50009 "Seminar Registration"
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
-                RunObject = Report "Participant list";
+                RunObject = report "Participant List";
                 ToolTip = 'Executes the Print action.';
             }
+            action("Send E-mail Confirmations")
+            {
+                Caption = 'Confirmations';
+                ApplicationArea = Basic, Suite;
+                Image = Email;
+                Promoted = true;
+                PromotedCategory = Category5;
+                RunObject = Codeunit "Seminar Mail";
+                ToolTip = 'Executes the Confirmations action.';
 
+                trigger OnAction()
+                var
+                    SeminarRegHeader: Record "Seminar Registration Header";
+                    SeminarMail: Codeunit "Seminar Mail";
+                begin
+                    SeminarMail.SendAllConfirmations(SeminarRegHeader);
+                end;
+            }
+            action(XMLParticipantList)
+            {
+                ApplicationArea = All;
+                Caption = 'XML Participant List';
+                Image = XMLFile;
+                ToolTip = 'Executes the XML Participant List action.';
+
+                trigger OnAction()
+                var
+                    SeminarRegHeader: Record "Seminar Registration Header";
+                    SeminarXMLParticipantLIst: XmlPort "Sem. Reg.-Participant List";
+                begin
+                    SeminarRegHeader := Rec;
+                    SeminarRegHeader.SetRecFilter();
+                    SeminarXMLParticipantLIst.SetTableView(SeminarRegHeader);
+                    SeminarXMLParticipantLIst.Run();
+                end;
+            }
+            action(InstructorAllocation)
+            {
+                ApplicationArea = All;
+                Caption = 'Instructor Allocation';
+                Image = Allocate;
+                RunObject = Page "Instructor Class Overview";
+                RunPageLink = code = field("Instructor Code");
+                ToolTip = 'Executes the Instructor Allocation action.';
+
+            }
         }
     }
 }

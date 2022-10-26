@@ -3,7 +3,7 @@
 table 50000 "Seminar Room"
 {
     Caption = 'Seminar Room';
-    DataClassification = CustomerContent;
+    DataClassification = SystemMetadata;
     LookupPageId = "Seminar Room List";
 
     fields
@@ -11,28 +11,23 @@ table 50000 "Seminar Room"
         field(1; "Code"; Code[20])
         {
             Caption = 'Code';
-            DataClassification = SystemMetadata;
             NotBlank = true;
         }
         field(2; Name; Text[100])
         {
             Caption = 'Name';
-            DataClassification = CustomerContent;
         }
         field(3; Address; Text[100])
         {
             Caption = 'Address';
-            DataClassification = CustomerContent;
         }
         field(4; "Address 2"; Text[50])
         {
             Caption = 'Address 2';
-            DataClassification = CustomerContent;
         }
         field(5; City; Text[30])
         {
             Caption = 'City';
-            DataClassification = CustomerContent;
             trigger OnValidate()
             begin
                 PostCode.ValidateCity(City, "Post Code", County, "Country/Region Code", false);
@@ -41,7 +36,6 @@ table 50000 "Seminar Room"
         field(6; "Post Code"; Code[20])
         {
             Caption = 'Post Code';
-            DataClassification = CustomerContent;
             TableRelation = "Post Code";
             trigger OnValidate()
             begin
@@ -56,47 +50,39 @@ table 50000 "Seminar Room"
         field(7; "Country/Region Code"; Code[10])
         {
             Caption = 'Country/Region Code';
-            DataClassification = CustomerContent;
             TableRelation = "Country/region";
         }
         field(8; "Phone No."; Text[30])
         {
             Caption = 'Phone No.';
-            DataClassification = CustomerContent;
             ExtendedDataType = PhoneNo;
         }
         field(9; "Telex No."; Text[30])
         {
             Caption = 'Telex No.';
-            DataClassification = CustomerContent;
             ExtendedDataType = PhoneNo;
         }
         field(10; "Name 2"; Text[50])
         {
             Caption = 'Name 2';
-            DataClassification = CustomerContent;
         }
         field(11; Contact; Text[100])
         {
             Caption = 'Contact';
-            DataClassification = CustomerContent;
         }
         field(12; "E-Mail"; Text[80])
         {
             Caption = 'E-Mail';
-            DataClassification = CustomerContent;
             ExtendedDataType = EMail;
         }
         field(13; "Home Page"; Text[90])
         {
             Caption = 'Home Page';
-            DataClassification = CustomerContent;
             ExtendedDatatype = URL;
         }
         field(14; "Maximum Participants"; Integer)
         {
             Caption = 'Maximum Participants';
-            DataClassification = SystemMetadata;
             trigger OnValidate()
             begin
                 ParticipantsCheck()
@@ -106,12 +92,10 @@ table 50000 "Seminar Room"
         {
             Caption = 'Alocation';
             Editable = false;
-            DataClassification = ToBeClassified;
         }
         field(16; "Resource No."; Code[20])
         {
             Caption = 'Resource No.';
-            DataClassification = SystemMetadata;
             TableRelation = Resource where(Type = filter("Seminar Room"));
             trigger OnValidate()
             begin
@@ -134,12 +118,10 @@ table 50000 "Seminar Room"
         {
             Caption = 'Internal/External';
             OptionMembers = Internal,External;
-            DataClassification = SystemMetadata;
         }
         field(19; "Contact No."; Code[20])
         {
             Caption = 'Contact No.';
-            DataClassification = SystemMetadata;
             TableRelation = Contact;
             trigger OnValidate()
             begin
@@ -150,7 +132,6 @@ table 50000 "Seminar Room"
         field(20; County; Text[30])
         {
             Caption = 'County';
-            DataClassification = CustomerContent;
         }
     }
 
