@@ -50,7 +50,6 @@ permissionset 50000 "My Permission Set"
         xmlport "Sem. Reg.-Participant List" = X,
         page "Instructor Class Overview" = X,
         page Instructors = X,
-        page "Object Runner" = X,
         page "Post. Seminar Reg. List" = X,
         page "Posted Seminar Charges" = X,
         page "Posted Seminar Reg. Subpage" = X,

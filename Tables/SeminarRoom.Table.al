@@ -125,8 +125,8 @@ table 50000 "Seminar Room"
             TableRelation = Contact;
             trigger OnValidate()
             begin
-                if Contact.Get("Contact No.") then
-                    Name := Contact.Name;
+                if Contact_.Get("Contact No.") then
+                    Name := Contact_.Name;
             end;
         }
         field(20; County; Text[30])
@@ -177,7 +177,5 @@ table 50000 "Seminar Room"
     var
         PostCode: Record "Post Code";
         Resource: Record Resource;
-#pragma warning disable AA0204
-        Contact: Record Contact;
-#pragma warning restore AA0204
+        Contact_: Record Contact;
 }
