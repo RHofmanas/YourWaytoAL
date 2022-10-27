@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 page 50021 "Instructor Class Overview"
-#pragma warning restore LC0015
-
 {
     Caption = 'Instructor Class Overview';
     PageType = Document;

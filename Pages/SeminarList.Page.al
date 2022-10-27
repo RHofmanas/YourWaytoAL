@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50006 "Seminar List"
-#pragma warning restore LC0015
 {
     Caption = 'Seminar List';
     PageType = List;

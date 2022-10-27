@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50015 "Post. Seminar Reg. List"
-#pragma warning restore LC0015
 {
     ApplicationArea = All;
     Caption = 'Post. Seminar Reg. List';

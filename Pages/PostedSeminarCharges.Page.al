@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50017 "Posted Seminar Charges"
-#pragma warning restore LC0015
 {
     Caption = 'Posted Seminar Charges';
     PageType = List;

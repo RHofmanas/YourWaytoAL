@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50011 "Seminar Activities"
-#pragma warning restore LC0015
 {
     Caption = 'Seminar Activities';
     PageType = CardPart;

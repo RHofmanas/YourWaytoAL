@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 table 50001 Instructor
-#pragma warning restore LC0015
-
 {
     Caption = 'Instructor';
     DataClassification = SystemMetadata;

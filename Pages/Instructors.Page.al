@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 page 50001 Instructors
-#pragma warning restore LC0015
-
 {
     ApplicationArea = All;
     Caption = 'Instructors';

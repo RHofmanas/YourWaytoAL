@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50010 "Seminar Registration List"
-#pragma warning restore LC0015
 {
     Caption = 'Seminar Registration List';
     PageType = List;                            // Changed from ListPart

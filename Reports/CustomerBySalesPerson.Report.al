@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 report 50101 "Customer by Salesperson"
-#pragma warning restore LC0015
 {
     Caption = 'Customer by Salesperson';
     UsageCategory = ReportsAndAnalysis;

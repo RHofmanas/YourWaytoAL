@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 table 50007 "Seminar Cue"
-#pragma warning restore LC0015
-
 {
     Caption = 'Seminar Cue';
     DataClassification = AccountData;

@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 table 50004 "Seminar Registration Header"
-#pragma warning restore LC0015
-
 {
     Caption = 'Seminar Registration Header';
     DataClassification = SystemMetadata;

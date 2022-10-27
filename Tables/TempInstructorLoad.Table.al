@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 table 50015 "Temp Instructor Load"
-#pragma warning restore LC0015
-
 {
     Caption = 'Temp Instructor Load';
     DataClassification = SystemMetadata;

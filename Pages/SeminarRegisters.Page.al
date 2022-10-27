@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50014 "Seminar Registers"
-#pragma warning restore LC0015
 {
     ApplicationArea = All;
     Caption = 'Seminar Registers';

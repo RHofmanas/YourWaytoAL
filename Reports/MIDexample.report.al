@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 report 50004 "MID example"
-#pragma warning restore LC0015
 {
     ApplicationArea = Basic, Suite;
     Caption = 'Participants List';

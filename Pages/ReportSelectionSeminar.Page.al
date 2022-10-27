@@ -1,6 +1,4 @@
-#pragma warning disable LC0015
 page 50019 "Report Selection-Seminar"
-#pragma warning restore LC0015
 {
     Caption = 'Report Selection-Seminar';
     PageType = Worksheet;

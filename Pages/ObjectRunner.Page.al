@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 page 50103 "Object Runner"
-#pragma warning restore LC0015
-
 {
     Caption = 'Object Runner';
     PageType = Card;

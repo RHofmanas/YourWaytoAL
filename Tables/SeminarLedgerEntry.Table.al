@@ -1,8 +1,4 @@
-
-#pragma warning disable LC0015
 table 50009 "Seminar Ledger Entry"
-#pragma warning restore LC0015
-
 {
     Caption = 'Seminar Ledger Entry';
     DataClassification = SystemMetadata;
