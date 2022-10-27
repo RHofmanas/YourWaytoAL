@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 report 50000 "Participant List"
+#pragma warning restore LC0015
 {
     ApplicationArea = All;
     Caption = 'Participant List';
@@ -68,9 +70,7 @@ report 50000 "Participant List"
         {
             area(content)
             {
-                group(GroupName)
-                {
-                }
+
             }
         }
         actions
@@ -82,5 +82,5 @@ report 50000 "Participant List"
     }
 
     var
-        ReportCaptionLbl: label 'Participant List';
+        ReportCaptionLbl: Label 'Participant List';
 }

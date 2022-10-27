@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 table 50009 "Seminar Ledger Entry"
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar Ledger Entry';
     DataClassification = SystemMetadata;
@@ -73,6 +77,7 @@ table 50009 "Seminar Ledger Entry"
         field(15; "Participant Name"; Text[100])
         {
             Caption = 'Participant Name';
+            Editable = false;
             FieldClass = FlowField;
             CalcFormula = lookup(Contact.Name where("No." = field("Participant Contact No.")));
         }

@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50011 "Seminar Activities"
+#pragma warning restore LC0015
 {
     Caption = 'Seminar Activities';
     PageType = CardPart;
@@ -10,6 +12,7 @@ page 50011 "Seminar Activities"
         {
             cuegroup(Seminar)
             {
+                Caption = 'Seminar';
                 field("Active Seminars"; Rec."Active Seminars")
                 {
                     Caption = 'Active Seminars';
@@ -44,8 +47,8 @@ page 50011 "Seminar Activities"
         Date.SetRange("Period Type", Date."Period Type"::Week);
         Date.SetFilter("Period Start", '>%1', WorkDate());
         Date.FindFirst();
-        Rec.SetRange("Next Week Date filter", Date."Period Start", Date."Period End");
-        Rec.SetRange("Today Date filter", WorkDate());
+        Rec.SetRange("Next Week Date Filter", Date."Period Start", Date."Period End");
+        Rec.SetRange("Today Date Filter", WorkDate());
         Rec.CalcFields("Active Seminars", "Todays Seminars", "Upcoming Seminars");
     end;
 }

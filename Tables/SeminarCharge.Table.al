@@ -1,8 +1,13 @@
+
+#pragma warning disable LC0015
 table 50006 "Seminar Charge"
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar Charge';
     DataClassification = SystemMetadata;
     LookupPageId = "Seminar Charges";
+    DrillDownPageId = "Seminar Charges";
 
     fields
     {
@@ -29,7 +34,7 @@ table 50006 "Seminar Charge"
                 Job.TestField(Status, Job.Status::Open);
             end;
         }
-        field(4; "Charge Type"; enum "Seminar Charge Type")
+        field(4; "Charge Type"; Enum "Seminar Charge Type")
         {
             Caption = 'Charge Type';
             trigger OnValidate()
@@ -72,7 +77,7 @@ table 50006 "Seminar Charge"
                             "Gen. Prod. Posting Group" := GLAccount."Gen. Prod. Posting Group";
                             "VAT Prod. Posting Group" := GLAccount."VAT Prod. Posting Group";
                         end;
-                End;
+                end;
             end;
         }
         field(6; Description; Text[100])

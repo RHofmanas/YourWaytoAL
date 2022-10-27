@@ -1,10 +1,14 @@
 
-// Reviewed, tested 04.10.22
+
+#pragma warning disable LC0015
 table 50000 "Seminar Room"
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar Room';
     DataClassification = SystemMetadata;
     LookupPageId = "Seminar Room List";
+    DrillDownPageId = "Seminar Room List";
 
     fields
     {
@@ -99,7 +103,7 @@ table 50000 "Seminar Room"
             TableRelation = Resource where(Type = filter("Seminar Room"));
             trigger OnValidate()
             begin
-                if Resource.get("Resource No.") then
+                if Resource.Get("Resource No.") then
                     Name := Resource.Name
                 else
                     Name := '';
@@ -111,8 +115,7 @@ table 50000 "Seminar Room"
             Editable = false;
             FieldClass = FlowField;
             CalcFormula =
-                exist("Comment Line" WHERE("Table Name" = const("Seminar Room"),
-                "No." = field(Code)));
+                exist("Comment Line" where("Table Name" = const("Seminar Room"), "No." = field(Code)));
         }
         field(18; "Internal/External"; Option)
         {
@@ -125,7 +128,7 @@ table 50000 "Seminar Room"
             TableRelation = Contact;
             trigger OnValidate()
             begin
-                if Contact.get("Contact No.") then
+                if Contact.Get("Contact No.") then
                     Name := Contact.Name;
             end;
         }

@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 xmlport 50000 "Sem. Reg.-Participant List"
+#pragma warning restore LC0015
 {
     Caption = 'Sem. Reg.-Participant List';
     Format = XML;
@@ -52,9 +54,6 @@ xmlport 50000 "Sem. Reg.-Participant List"
         {
             area(content)
             {
-                group(GroupName)
-                {
-                }
             }
         }
         actions

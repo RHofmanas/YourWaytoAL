@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50015 "Post. Seminar Reg. List"
+#pragma warning restore LC0015
 {
     ApplicationArea = All;
     Caption = 'Post. Seminar Reg. List';
@@ -96,7 +98,7 @@ page 50015 "Post. Seminar Reg. List"
                 trigger OnAction()
                 var
                     PostedSeminarRegLine: Record "Posted Seminar Reg. Line";
-                    Navigate: page Navigate;
+                    Navigate: Page Navigate;
                 begin
                     Navigate.SetDoc(PostedSeminarRegLine."Register Date", PostedSeminarRegLine."Seminar Registration No.");
                     Navigate.Run();

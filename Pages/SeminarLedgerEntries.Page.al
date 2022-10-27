@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50013 "Seminar Ledger Entries"
+#pragma warning restore LC0015
 {
     ApplicationArea = All;
     Caption = 'Seminar Ledger Entries';
@@ -135,7 +137,7 @@ page 50013 "Seminar Ledger Entries"
                 trigger OnAction()
                 var
                     SeminarLedgerEntry: Record "Seminar Ledger Entry";
-                    Navigate: page Navigate;
+                    Navigate: Page Navigate;
                 begin
                     Navigate.SetDoc(SeminarLedgerEntry."Posting Date", SeminarLedgerEntry."Document No.");
                     Navigate.Run();

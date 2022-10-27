@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 report 50101 "Customer by Salesperson"
+#pragma warning restore LC0015
 {
     Caption = 'Customer by Salesperson';
     UsageCategory = ReportsAndAnalysis;
@@ -21,7 +23,7 @@ report 50101 "Customer by Salesperson"
             column(PostCodeCityCaption; PostCodeCityCaptionLbl)
             {
             }
-            column(CustNoInvoiceAmountsCaption; Customer.FieldCaption("Invoice amounts"))
+            column(CustNoInvoiceAmountsCaption; Customer.FieldCaption("Invoice Amounts"))
             {
             }
             column(ReportCaption; ReportCaptionLbl)
@@ -30,7 +32,7 @@ report 50101 "Customer by Salesperson"
             column(PageCaption; PageCaptionLbl)
             {
             }
-            column(UserID; UserID)
+            column(UserID; UserId)
             {
             }
             column(CompanyName; CompanyName)
@@ -54,7 +56,7 @@ report 50101 "Customer by Salesperson"
                 column(Cust_Name; Name)
                 {
                 }
-                column(Invoice_Amounts; "Invoice amounts")
+                column(Invoice_Amounts; "Invoice Amounts")
                 {
                 }
                 column("Post_Code_City"; "Post Code" + ' ' + "City")
@@ -62,7 +64,7 @@ report 50101 "Customer by Salesperson"
                 }
                 trigger OnAfterGetRecord()
                 begin
-                    calcfields("Sales (LCY)");
+                    CalcFields("Sales (LCY)");
                     if (PrintOnlyCustomerWithSale and ("Sales (LCY)" = 0)) then CurrReport.Skip();
                 end;
             }
@@ -77,6 +79,7 @@ report 50101 "Customer by Salesperson"
             {
                 group(General)
                 {
+                    Caption = 'General';
                     field(PrintOnlyCustomerWithSale; PrintOnlyCustomerWithSale)
                     {
                         Caption = 'Print active customers';
@@ -92,7 +95,7 @@ report 50101 "Customer by Salesperson"
 #pragma warning disable AA0204
         PrintOnlyCustomerWithSale: Boolean;
 #pragma warning restore AA0204
-        PostCodeCityCaptionLbl: label 'Postcode/City';
-        ReportCaptionLbl: label 'Customers by Salesperson';
-        PageCaptionLbl: label 'Page';
+        PostCodeCityCaptionLbl: Label 'Postcode/City';
+        ReportCaptionLbl: Label 'Customers by Salesperson';
+        PageCaptionLbl: Label 'Page';
 }

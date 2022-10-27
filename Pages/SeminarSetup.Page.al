@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 page 50002 "Seminar Setup"
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar Setup';
     PageType = Card;
@@ -11,6 +15,7 @@ page 50002 "Seminar Setup"
         {
             group(Numbering)
             {
+                Caption = 'Numbering';
                 field("Seminar Nos."; Rec."Seminar Nos.")
                 {
                     Caption = 'Seminar Nos.';

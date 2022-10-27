@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 table 50013 "Posted Seminar Charge"
+#pragma warning restore LC0015
+
 {
     Caption = 'Posted Seminar Charge';
     DataClassification = CustomerContent;

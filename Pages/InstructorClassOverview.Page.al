@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 page 50021 "Instructor Class Overview"
+#pragma warning restore LC0015
+
 {
     Caption = 'Instructor Class Overview';
     PageType = Document;
@@ -27,15 +31,15 @@ page 50021 "Instructor Class Overview"
                         // message(callback);
                         SeminarRegistrationHeader.Reset();
                         TempInstructorLoad.Reset();
-                        TempInstructorLoad.setfilter("Allocation Date", callback);
-                        TempInstructorLoad.setfilter("Seminar Registration", '<>%1', '');
-                        if TempInstructorLoad.findset() then
+                        TempInstructorLoad.SetFilter("Allocation Date", callback);
+                        TempInstructorLoad.SetFilter("Seminar Registration", '<>%1', '');
+                        if TempInstructorLoad.FindSet() then
                             repeat
                                 SeminarRegistrationHeader.Get(TempInstructorLoad."Seminar Registration");
                                 SeminarRegistrationHeader.Mark(true);
                             until TempInstructorLoad.Next() = 0;
                         SeminarRegistrationHeader.MarkedOnly(true);
-                        page.RunModal(page::"Seminar Registration List", SeminarRegistrationHeader);
+                        Page.RunModal(Page::"Seminar Registration List", SeminarRegistrationHeader);
                         SeminarRegistrationHeader.ClearMarks();
                         CurrPage.DateChart.createDateChart(CreateDataJsonArray());
                     end;
@@ -47,12 +51,9 @@ page 50021 "Instructor Class Overview"
         SeminarRegistrationHeader: Record "Seminar Registration Header";
         TempInstructorLoad: Record "Temp Instructor Load" temporary;
 
-    local procedure formatDate(Date2Format: Date): Text
-    begin
-        exit(format(Date2Format, 0, 'Date(' + delchr(format(Date2DMY(Date2Format, 3)), '=', '.,') + ',' + format((Date2DMY(Date2Format, 2) - 1)) + ',' + format(Date2DMY(Date2Format, 1)) + ')'));
-    end;
-
+#pragma warning disable LC0010
     procedure CreateDataJsonArray(): JsonArray
+#pragma warning restore LC0010
     var
         WorkingDate: Record Date;
         JArray: JsonArray;
@@ -65,7 +66,7 @@ page 50021 "Instructor Class Overview"
         JsonObj.Add('type', 'date');
         JsonObj.Add('id', 'Date');
         JArray.Add(JsonObj);
-        clear(JsonObj);
+        Clear(JsonObj);
         JsonObj.Add('type', 'number');
         JsonObj.Add('id', 'Won/Loss');
         JArray.Add(JsonObj);
@@ -80,9 +81,9 @@ page 50021 "Instructor Class Overview"
         SeminarRegistrationHeader.SetFilter("Starting Date", '%1..', Today());
 
         WorkingDate.Reset();
-        workingDate.SetRange("Period Type", WorkingDate."Period Type"::Date);
-        WorkingDate.setrange("Period No.", 1, 5);
-        WorkingDate.SetFilter("Period Start", '%1..%2', DMY2Date(1, 1, Date2DMY(today(), 3)), DMY2Date(31, 12, Date2DMY(today(), 3) + 1));
+        WorkingDate.SetRange("Period Type", WorkingDate."Period Type"::Date);
+        WorkingDate.SetRange("Period No.", 1, 5);
+        WorkingDate.SetFilter("Period Start", '%1..%2', DMY2Date(1, 1, Date2DMY(Today(), 3)), DMY2Date(31, 12, Date2DMY(Today(), 3) + 1));
 
         if WorkingDate.FindSet() then
             repeat
@@ -105,7 +106,7 @@ page 50021 "Instructor Class Overview"
                     TempInstructorLoad.Allocation := 1;
                     TempInstructorLoad."Allocation Date" := WorkingDate."Period Start";
                     TempInstructorLoad.Insert();
-                    WorkingDate.next();
+                    WorkingDate.Next();
                 end;
             until SeminarRegistrationHeader.Next() = 0;
 
@@ -124,5 +125,10 @@ page 50021 "Instructor Class Overview"
                 TempInstructorLoad.SetRange("Allocation Date");
             until TempInstructorLoad.Next() = 0;
         exit(data);
+    end;
+
+    local procedure formatDate(Date2Format: Date): Text
+    begin
+        exit(Format(Date2Format, 0, 'Date(' + DelChr(Format(Date2DMY(Date2Format, 3)), '=', '.,') + ',' + Format((Date2DMY(Date2Format, 2) - 1)) + ',' + Format(Date2DMY(Date2Format, 1)) + ')'));
     end;
 }

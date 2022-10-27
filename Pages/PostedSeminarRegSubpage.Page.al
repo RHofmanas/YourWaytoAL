@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50016 "Posted Seminar Reg. Subpage"
+#pragma warning restore LC0015
 {
     Caption = 'Posted Seminar Registration Lines';
     PageType = ListPart;

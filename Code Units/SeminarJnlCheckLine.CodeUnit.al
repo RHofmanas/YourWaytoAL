@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50001 "Seminar Jnl.-Check Line"
+#pragma warning restore LC0015
 {
     TableNo = "Seminar Journal Line";
 
@@ -7,7 +9,9 @@ codeunit 50001 "Seminar Jnl.-Check Line"
         RunCheck(Rec);
     end;
 
+#pragma warning disable LC0010
     procedure RunCheck(var SeminarJnlLine: Record "Seminar Journal Line")
+#pragma warning restore LC0010
     var
         UserSetup: Record "User Setup";
         GLSetup: Record "General Ledger Setup";
@@ -19,14 +23,14 @@ codeunit 50001 "Seminar Jnl.-Check Line"
         SeminarJnlLine.TestField("Posting Date", ErrorInfo.Create(Text000, true));
         SeminarJnlLine.TestField("Seminar No.", ErrorInfo.Create(Text000, true));
 
-        Case SeminarJnlLine."Option Type" of
+        case SeminarJnlLine."Option Type" of
             "Option Type"::Instructor:
                 SeminarJnlLine.TestField("Instructor Code", ErrorInfo.Create(Text000, true));
             "Option Type"::Room:
                 SeminarJnlLine.TestField("Seminar Room Code", ErrorInfo.Create(Text000, true));
             "Option Type"::Participant:
                 SeminarJnlLine.TestField("Participant Contact No.", ErrorInfo.Create(Text000, true));
-        End;
+        end;
 
         if SeminarJnlLine.Chargeable then
             SeminarJnlLine.TestField("Bill-to Customer No.", ErrorInfo.Create(Text000, true));

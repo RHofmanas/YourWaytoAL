@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50003 "Navigate Triger Extension"
+#pragma warning restore LC0015
 {
     EventSubscriberInstance = StaticAutomatic;
 

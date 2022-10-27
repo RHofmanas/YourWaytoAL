@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50002 "Seminar Jnl.-Post Line"
+#pragma warning restore LC0015
 {
     TableNo = "Seminar Journal Line";
 
@@ -7,7 +9,7 @@ codeunit 50002 "Seminar Jnl.-Post Line"
         RunWithCheck(Rec);
     end;
 
-    procedure RunWithCheck(var SeminarJnlLine2: Record "Seminar Journal Line"): integer
+    procedure RunWithCheck(var SeminarJnlLine2: Record "Seminar Journal Line"): Integer
     var
         JobLedgEntryNo: Integer;
     begin

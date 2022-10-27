@@ -1,14 +1,54 @@
+
+#pragma warning disable LC0015
 codeunit 50020 "Seminar-Post"
+#pragma warning restore LC0015
+
 {
     TableNo = "Seminar Registration Header";
+
+    var
+        CommentLine: Record "Comment Line";
+        CommentLine2: Record "Comment Line";
+        Customer: Record Customer;
+        Instructor: Record Instructor;
+        Job: Record Job;
+        JobJnlLine: Record "Job Journal Line";
+        JobLedgEntry: Record "Job Ledger Entry";
+        JobtaskLine: Record "Job Task";
+        PstdSeminarCharge: Record "Posted Seminar Charge";
+        PstdSeminarRegHeader: Record "Posted Seminar Reg. Header";
+        PstdSeminarRegLine: Record "Posted Seminar Reg. Line";
+        Resource: Record Resource;
+        SeminarCharge: Record "Seminar Charge";
+        SeminarJnlLine: Record "Seminar Journal Line";
+        SeminarLedgEntry: Record "Seminar Ledger Entry";
+        SeminarRegHeader: Record "Seminar Registration Header";
+        SeminarRegLine: Record "Seminar Registration Line";
+        SeminarRoom: Record "Seminar Room";
+        SeminarSetup: Record "Seminar Setup";
+        SourceCodeSetup: Record "Source Code Setup";
+        JobJnlPostLine: Codeunit "Job Jnl.-Post Line";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
+        SeminarJnlPostLine: Codeunit "Seminar Jnl.-Post Line";
+        ModifyHeader: Boolean;
+        SourceCode: Code[10];
+        Window: Dialog;
+        JobLedgEntryNo: Integer;
+        LineCount: Integer;
+        SeminarLedgerEntryNo: Integer;
+        LineCounterLbl: Label 'Line No. #2#####';
+
+        PostingLbl: Label 'Posting... \';
+        SeminarRegLineEmptyLbl: Label 'There are no records in the table %1 associated with this %2';
+        SemRegLbl: Label 'Seminar Reg. #1#####\';
 
     #region 
     trigger OnRun()
     var
-        RecRef: RecordRef;
-        RecID: RecordId;
         SeminarLedgerEntry: Record "Seminar Ledger Entry";
-        OptionType: enum "Option Type";
+        RecID: RecordId;
+        RecRef: RecordRef;
+        OptionType: Enum "Option Type";
     begin
         ClearAll();
         SeminarRegHeader := Rec;
@@ -28,24 +68,24 @@ codeunit 50020 "Seminar-Post"
         SeminarRoom.TestField("Resource No.");
         SeminarRegLine.Reset();
         SeminarRegLine.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
-        If SeminarRegLine.IsEmpty then
+        if SeminarRegLine.IsEmpty then
             Error(SeminarRegLineEmptyLbl, SeminarRegLine.TableCaption, SeminarRegHeader.TableCaption);
-        Window.open(PostingLbl + SemRegLbl + LineCounterLbl);
-        window.update(1, SeminarRegHeader."No.");
+        Window.Open(PostingLbl + SemRegLbl + LineCounterLbl);
+        Window.Update(1, SeminarRegHeader."No.");
         if SeminarRegHeader."Posting No." = '' then begin
             if SeminarRegHeader."Posting No. Series" = '' then begin
-                SeminarSetup.get();
+                SeminarSetup.Get();
                 SeminarSetup.TestField("Posted Seminar Reg. Nos.");
                 SeminarRegHeader."Posting No. Series" := SeminarSetup."Posted Seminar Reg. Nos.";
             end;
-            SeminarRegHeader."Posting No." := NoSeriesManagement.GetNextNo(SeminarRegHeader."Posting No. series", SeminarRegHeader."Posting Date", true);
-            SeminarRegHeader.modify();
-            Commit();
+            SeminarRegHeader."Posting No." := NoSeriesManagement.GetNextNo(SeminarRegHeader."Posting No. Series", SeminarRegHeader."Posting Date", true);
+            SeminarRegHeader.Modify();
+            Commit(); // Ends the current write transaction
         end;
         SeminarRegLine.LockTable();
         SeminarLedgerEntry.LockTable();
         SeminarLedgerEntryNo := SeminarLedgerEntry.GetLastEntryNo();
-        SourceCodeSetup.get();
+        SourceCodeSetup.Get();
         SourceCode := SourceCodeSetup.Seminar;
         PstdSeminarRegHeader.Init();
         PstdSeminarRegHeader.TransferFields(SeminarRegHeader);
@@ -62,10 +102,10 @@ codeunit 50020 "Seminar-Post"
         SeminarRegLine.FindFirst();
         repeat
             LineCount += 1;
-            Window.update(2, LineCount);
+            Window.Update(2, LineCount);
             SeminarRegLine.TestField("Bill-to Customer No.");
             SeminarRegLine.TestField("Participant Contact No.");
-            If not SeminarRegLine."To Invoice" then begin
+            if not SeminarRegLine."To Invoice" then begin
                 SeminarRegLine."Seminar Price" := 0;
                 SeminarRegLine."Line Discount %" := 0;
                 SeminarRegLine."Line Discount Amount" := 0;
@@ -96,7 +136,7 @@ codeunit 50020 "Seminar-Post"
         CommentLine.SetRange("Table Name", FromTableNameID);
         CommentLine.SetRange("No.", FromNumber);
 
-        if CommentLine.Findset() then
+        if CommentLine.FindSet() then
             repeat
                 CommentLine2.Init();
                 CommentLine2.TransferFields(CommentLine);
@@ -146,7 +186,7 @@ codeunit 50020 "Seminar-Post"
         JobJnlLine."Job No." := SeminarRegHeader."Job No.";
         JobJnlLine."Posting Date" := SeminarRegHeader."Posting Date";
         JobJnlLine."Document Date" := SeminarRegHeader."Document Date";
-        JobJnlLine.type := JobJnlLine.type::Resource;
+        JobJnlLine.Type := JobJnlLine.Type::Resource;
         JobJnlLine."Unit of Measure Code" := Resource."Base Unit of Measure";
         JobJnlLine."No." := Resource."No.";
         JobJnlLine."Gen. Prod. Posting Group" := SeminarRegHeader."Gen. Prod. Posting Group";
@@ -195,6 +235,18 @@ codeunit 50020 "Seminar-Post"
     #endregion
 
     #region functions
+
+    local procedure PostCharge()
+    begin
+        SeminarCharge.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
+        if SeminarCharge.FindFirst() then
+            repeat
+                JobLedgEntryNo := PostJobJnlLine("Option Type"::Charge);
+                PostSeminarJnlLine("Option Type"::Charge, JobLedgEntryNo);
+                JobLedgEntryNo := 0;
+            until SeminarCharge.Next() = 0;
+    end;
+
     local procedure PostSeminarJnlLine(OptionType: Enum "Option Type"; JobLedgerEntryNo: Integer): Integer
     begin
         SeminarJnlLine.Init();
@@ -211,7 +263,7 @@ codeunit 50020 "Seminar-Post"
         case OptionType of
             OptionType::Instructor:
                 begin
-                    SeminarRegHeader.testfield(Duration);
+                    SeminarRegHeader.TestField(Duration);
                     SeminarJnlLine.Description := Instructor.Name;
                     SeminarJnlLine."Charge Type" := SeminarJnlLine."Charge Type"::Resource;
                     SeminarJnlLine.Chargeable := false;
@@ -219,7 +271,7 @@ codeunit 50020 "Seminar-Post"
                 end;
             OptionType::Room:
                 begin
-                    SeminarRegHeader.testfield(Duration);
+                    SeminarRegHeader.TestField(Duration);
                     SeminarJnlLine.Description := SeminarRoom.Name;
                     SeminarJnlLine."Charge Type" := SeminarJnlLine."Charge Type"::Resource;
                     SeminarJnlLine.Chargeable := false;
@@ -234,7 +286,7 @@ codeunit 50020 "Seminar-Post"
                     SeminarJnlLine.Quantity := 1;
                     SeminarJnlLine."Unit Price" := SeminarRegLine.Amount;
                     SeminarJnlLine."Total Price" := SeminarRegLine.Amount;
-                    SeminarJnlLine.testfield("Job Ledger Entry No.");
+                    SeminarJnlLine.TestField("Job Ledger Entry No.");
                 end;
             OptionType::Charge:
                 begin
@@ -250,52 +302,6 @@ codeunit 50020 "Seminar-Post"
 
         exit(SeminarJnlPostLine.RunWithCheck(SeminarJnlLine));
     end;
-
-    local procedure PostCharge()
-    begin
-        SeminarCharge.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
-        if SeminarCharge.FindFirst() then
-            repeat
-                JobLedgEntryNo := PostJobJnlLine("Option Type"::Charge);
-                PostSeminarJnlLine("Option Type"::Charge, JobLedgEntryNo);
-                JobLedgEntryNo := 0;
-            until SeminarCharge.Next() = 0;
-    end;
     #endregion functions
-    var
-        SeminarRegHeader: Record "Seminar Registration Header";
-        SeminarRegLine: Record "Seminar Registration Line";
-        PstdSeminarRegHeader: Record "Posted Seminar Reg. Header";
-        PstdSeminarRegLine: Record "Posted Seminar Reg. Line";
-        SeminarSetup: Record "Seminar Setup";
-        CommentLine: Record "Comment Line";
-        CommentLine2: Record "Comment Line";
-        SeminarCharge: Record "Seminar Charge";
-        PstdSeminarCharge: Record "Posted Seminar Charge";
-        SeminarRoom: Record "Seminar Room";
-        Instructor: Record Instructor;
-        Job: Record Job;
-        Resource: Record Resource;
-        Customer: Record Customer;
-        JobLedgEntry: Record "Job Ledger Entry";
-        SeminarLedgEntry: Record "Seminar Ledger Entry";
-        JobJnlLine: Record "Job Journal Line";
-        JobtaskLine: Record "Job Task";
-        SeminarJnlLine: Record "Seminar Journal Line";
-        SourceCodeSetup: Record "Source Code Setup";
-        JobJnlPostLine: Codeunit "Job Jnl.-Post Line";
-        SeminarJnlPostLine: Codeunit "Seminar Jnl.-Post Line";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
-        ModifyHeader: Boolean;
-        Window: Dialog;
-        SourceCode: Code[10];
-        LineCount: Integer;
-        JobLedgEntryNo: Integer;
-        SeminarLedgerEntryNo: Integer;
-        SeminarRegLineEmptyLbl: label 'There are no records in the table %1 associated with this %2';
-
-        PostingLbl: Label 'Posting... \';
-        SemRegLbl: label 'Seminar Reg. #1#####\';
-        LineCounterLbl: label 'Line No. #2#####';
 
 }

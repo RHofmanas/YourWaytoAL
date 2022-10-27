@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50010 "Seminar Trigger Management"
+#pragma warning restore LC0015
 {
     TableNo = "Job Journal Line";
 
@@ -7,7 +9,7 @@ codeunit 50010 "Seminar Trigger Management"
 
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, 1012, 'OnBeforeJobLedgEntryInsert', '', false, false)]
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Job Jnl.-Post Line", 'OnBeforeJobLedgEntryInsert', '', false, false)]
 
     local procedure OnBeforeJobLedgEntryInsert(JobJournalLine: Record "Job Journal Line";
         var JobLedgerEntry: Record "Job Ledger Entry")

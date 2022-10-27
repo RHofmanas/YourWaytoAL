@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50012 "Seminar Role Center"
+#pragma warning restore LC0015
 {
     Caption = 'Seminar Role Center';
     PageType = RoleCenter;

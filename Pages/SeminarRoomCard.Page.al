@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 page 50003 "Seminar Room Card"
+#pragma warning restore LC0015
 {
     Caption = 'Seminar Room Card';
     PageType = Card;
@@ -10,6 +12,7 @@ page 50003 "Seminar Room Card"
         {
             group(General)
             {
+                Caption = 'General';
                 field("Code"; Rec."Code")
                 {
                     Caption = 'Code';
@@ -79,6 +82,7 @@ page 50003 "Seminar Room Card"
             }
             group(Communication)
             {
+                Caption = 'Communication';
                 field("Phone No."; Rec."Phone No.")
                 {
                     Caption = 'Phone No.';
@@ -125,6 +129,7 @@ page 50003 "Seminar Room Card"
         {
             group("Seminar Room")
             {
+                Caption = 'Seminar Room';
                 action("Comments")
                 {
                     Caption = 'Comments';

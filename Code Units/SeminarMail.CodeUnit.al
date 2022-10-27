@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50006 "Seminar Mail"
+#pragma warning restore LC0015
 {
     var
         SeminarRegHeader: Record "Seminar Registration Header";
@@ -20,7 +22,7 @@ codeunit 50006 "Seminar Mail"
     begin
         Contact.Get(SeminarRegLine."Participant Contact No.");
         Customer.Get(SeminarRegLine."Bill-to Customer No.");
-        if Contact."E-Mail" = Customer."E-mail" then
+        if Contact."E-Mail" = Customer."E-Mail" then
             CCName := ''
         else
             CCName := Customer."E-Mail";

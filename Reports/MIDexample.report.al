@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 report 50004 "MID example"
+#pragma warning restore LC0015
 {
     ApplicationArea = Basic, Suite;
     Caption = 'Participants List';
@@ -74,9 +76,7 @@ report 50004 "MID example"
         {
             area(content)
             {
-                group(GroupName)
-                {
-                }
+
             }
         }
         actions
@@ -87,5 +87,5 @@ report 50004 "MID example"
         }
     }
     var
-        ReportCaptionLbl: label 'Participant List';
+        ReportCaptionLbl: Label 'Participant List';
 }

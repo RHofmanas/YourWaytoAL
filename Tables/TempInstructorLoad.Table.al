@@ -1,29 +1,29 @@
+
+#pragma warning disable LC0015
 table 50015 "Temp Instructor Load"
+#pragma warning restore LC0015
+
 {
     Caption = 'Temp Instructor Load';
-    DataClassification = ToBeClassified;
+    DataClassification = SystemMetadata;
 
     fields
     {
         field(1; "Instructor Code"; Code[10])
         {
             Caption = 'Instructor Code';
-            DataClassification = SystemMetadata;
         }
         field(2; "Allocation Date"; Date)
         {
             Caption = 'Allocation Date';
-            DataClassification = SystemMetadata;
         }
         field(3; "Seminar Registration"; Code[20])
         {
             Caption = 'Seminar Registration';
-            DataClassification = SystemMetadata;
         }
         field(4; Allocation; Decimal)
         {
             Caption = 'Allocation';
-            DataClassification = SystemMetadata;
         }
     }
     keys

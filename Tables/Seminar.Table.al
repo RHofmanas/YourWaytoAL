@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 table 50003 Seminar
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar';
     DataClassification = CustomerContent;

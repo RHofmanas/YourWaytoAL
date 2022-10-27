@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 page 50004 "Seminar Room List"
+#pragma warning restore LC0015
+
 {
     Caption = 'Seminar Room List';
     PageType = List;
@@ -11,25 +15,25 @@ page 50004 "Seminar Room List"
         {
             repeater(General)
             {
-                field("Code"; rec.Code)
+                field(Code; Rec.Code)
                 {
                     Caption = 'Code';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Code field.';
                 }
-                field("Name"; rec.Name)
+                field(Name; Rec.Name)
                 {
                     Caption = 'Name';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Name field.';
                 }
-                field("Maximum Participants"; rec."Maximum Participants")
+                field("Maximum Participants"; Rec."Maximum Participants")
                 {
                     Caption = 'Maximum Participants';
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Maximum Participants field.';
                 }
-                field("Resource No."; rec."Resource No.")
+                field("Resource No."; Rec."Resource No.")
                 {
                     Caption = 'Resource No.';
                     ApplicationArea = All;

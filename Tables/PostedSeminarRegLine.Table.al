@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 table 50012 "Posted Seminar Reg. Line"
+#pragma warning restore LC0015
+
 {
     Caption = 'Posted Seminar Reg. Line';
     DataClassification = SystemMetadata;

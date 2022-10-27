@@ -1,4 +1,8 @@
+
+#pragma warning disable LC0015
 table 50001 Instructor
+#pragma warning restore LC0015
+
 {
     Caption = 'Instructor';
     DataClassification = SystemMetadata;
@@ -10,24 +14,20 @@ table 50001 Instructor
         field(1; "Code"; Code[10])
         {
             Caption = 'Code';
-            DataClassification = SystemMetadata;
             NotBlank = true;
         }
         field(2; Name; Text[100])
         {
             Caption = 'Name';
-            DataClassification = SystemMetadata;
         }
         field(3; "Type"; Option)
         {
             Caption = 'Type';
-            DataClassification = SystemMetadata;
             OptionMembers = Internal,External;
         }
         field(4; "Resource No."; Code[20])
         {
             Caption = 'Resource No.';
-            DataClassification = SystemMetadata;
             TableRelation = Resource where(Type = const(Person));
             trigger OnValidate()
             begin
@@ -40,7 +40,6 @@ table 50001 Instructor
         field(5; "Contact No."; Code[20])
         {
             Caption = 'Contact No.';
-            DataClassification = SystemMetadata;
             TableRelation = Contact;
             trigger OnValidate()
             begin

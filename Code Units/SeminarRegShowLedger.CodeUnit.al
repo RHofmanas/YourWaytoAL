@@ -1,4 +1,6 @@
+#pragma warning disable LC0015
 codeunit 50000 "Seminar Reg.-Show Ledger"
+#pragma warning restore LC0015
 {
     TableNo = "Seminar Register";
 
