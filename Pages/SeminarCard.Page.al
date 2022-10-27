@@ -6,6 +6,7 @@ page 50005 "Seminar Card"
     PageType = Card;
     SourceTable = Seminar;
     UsageCategory = Administration;
+    ApplicationArea = all;
 
     layout
     {
@@ -144,6 +145,7 @@ page 50005 "Seminar Card"
                 action(SeminarLedgerEntries)
                 {
                     ShortcutKey = 'Ctrl+Shift+N';
+                    Image = Entries;
                     Caption = 'Entries';
                     ApplicationArea = All;
                     RunObject = Page "Seminar Ledger Entries";
@@ -154,6 +156,7 @@ page 50005 "Seminar Card"
                 {
                     Caption = 'Registrations';
                     ApplicationArea = All;
+                    Image = Registered;
                     RunObject = Page "Seminar Registration";
                     ToolTip = 'Executes the Registrations action.';
                     //RunPageLink = "Seminar Registration";

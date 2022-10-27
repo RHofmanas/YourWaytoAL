@@ -3,28 +3,29 @@ codeunit 50004 "Seminar Registration-Printed"
 #pragma warning restore LC0015
 {
     TableNo = "Seminar Registration Header";
-    Permissions = tabledata "Seminar Registration Header" = RM;
 
     trigger OnRun()
     var
-        SeminarRegHeader: Record "Seminar Registration Header";
+        SeminarRegistrationHeader: Record "Seminar Registration Header";
     begin
-        SeminarRegHeader.FindFirst();
+        SeminarRegistrationHeader.FindSet();
         repeat
-            SeminarRegHeader."No. Printed" := SeminarRegHeader."No. Printed" + 1;
-        until SeminarRegHeader.Next() = 0;
+            SeminarRegistrationHeader."No. Printed" := SeminarRegistrationHeader."No. Printed" + 1;
+        until SeminarRegistrationHeader.Next() = 0;
 #pragma warning disable LC0002
         Commit();
 #pragma warning restore LC0002
     end;
 
+    /*
     procedure SetSuppressCommit(var NewSuppressCommit: Boolean)
     begin
         SuppressCommit := NewSuppressCommit;
     end;
-
+    
     var
         SuppressCommit: Boolean;
+    */
 
     [IntegrationEvent(false, false)]
     procedure OnBeforeRun(SuppressCommit: Boolean)

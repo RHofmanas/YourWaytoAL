@@ -48,7 +48,9 @@ table 50000 "Seminar Room"
 
             trigger OnLookup()
             begin
+#pragma warning disable AA0139
                 PostCode.LookupPostCode(City, "Post Code", County, "Country/Region Code");
+#pragma warning restore AA0139
             end;
         }
         field(7; "Country/Region Code"; Code[10])

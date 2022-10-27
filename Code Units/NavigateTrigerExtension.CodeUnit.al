@@ -19,76 +19,76 @@ codeunit 50003 "Navigate Triger Extension"
         case TempDocumentEntry."Table ID" of
             Database::"Seminar Registration Header":
                 begin
-                    SeminarRegHeader.Reset();
-                    SeminarRegHeader.SetCurrentKey("No.", "Posting Date");
-                    SeminarRegHeader.SetFilter("No.", DocNoFilter);
-                    SeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
+                    SeminarRegistrationHeader.Reset();
+                    SeminarRegistrationHeader.SetCurrentKey("No.", "Posting Date");
+                    SeminarRegistrationHeader.SetFilter("No.", DocNoFilter);
+                    SeminarRegistrationHeader.SetFilter("Posting Date", PostingDateFilter);
                     if TempDocumentEntry."No. of Records" = 1 then
-                        Page.Run(Page::"Seminar Registration", SeminarRegHeader)
+                        Page.Run(Page::"Seminar Registration", SeminarRegistrationHeader)
                     else
-                        Page.Run(0, SeminarRegHeader);
+                        Page.Run(0, SeminarRegistrationHeader);
                 end;
             Database::"Posted Seminar Reg. Header":
                 begin
-                    PstdSeminarRegHeader.Reset();
-                    PstdSeminarRegHeader.SetCurrentKey("No.", "Posting Date");
-                    PstdSeminarRegHeader.SetFilter("No.", DocNoFilter);
-                    PstdSeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
+                    PostedSeminarRegHeader.Reset();
+                    PostedSeminarRegHeader.SetCurrentKey("No.", "Posting Date");
+                    PostedSeminarRegHeader.SetFilter("No.", DocNoFilter);
+                    PostedSeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
 
                     if TempDocumentEntry."No. of Records" = 1 then
-                        Page.Run(Page::"Posted Seminar Registration", PstdSeminarRegHeader)
+                        Page.Run(Page::"Posted Seminar Registration", PostedSeminarRegHeader)
                     else
-                        Page.Run(0, PstdSeminarRegHeader);
+                        Page.Run(0, PostedSeminarRegHeader);
                 end;
             Database::"Seminar Ledger Entry":
                 begin
-                    SeminarLedgEntry.Reset();
-                    SeminarLedgEntry.SetCurrentKey("Document No.", "Posting Date");
-                    SeminarLedgEntry.SetFilter("Document No.", DocNoFilter);
-                    SeminarLedgEntry.SetFilter("Posting Date", PostingDateFilter);
+                    SeminarLedgerEntry.Reset();
+                    SeminarLedgerEntry.SetCurrentKey("Document No.", "Posting Date");
+                    SeminarLedgerEntry.SetFilter("Document No.", DocNoFilter);
+                    SeminarLedgerEntry.SetFilter("Posting Date", PostingDateFilter);
                     if TempDocumentEntry."No. of Records" = 1 then
-                        Page.Run(Page::"Seminar Ledger Entries", SeminarLedgEntry)
+                        Page.Run(Page::"Seminar Ledger Entries", SeminarLedgerEntry)
                     else
-                        Page.Run(0, SeminarLedgEntry);
+                        Page.Run(0, SeminarLedgerEntry);
                 end;
         end;
     end;
 
     local procedure FindSeminarLedgerEntries(var DocumentEntry: Record "Document Entry"; DocNoFilter: Text; PostingDateFilter: Text)
     begin
-        if SeminarLedgEntry.ReadPermission() then begin
-            SeminarLedgEntry.Reset();
-            SeminarLedgEntry.SetCurrentKey("Document No.");
-            SeminarLedgEntry.SetFilter("Document No.", DocNoFilter);
-            SeminarLedgEntry.SetFilter("Posting Date", PostingDateFilter);
+        if SeminarLedgerEntry.ReadPermission() then begin
+            SeminarLedgerEntry.Reset();
+            SeminarLedgerEntry.SetCurrentKey("Document No.");
+            SeminarLedgerEntry.SetFilter("Document No.", DocNoFilter);
+            SeminarLedgerEntry.SetFilter("Posting Date", PostingDateFilter);
             InsertIntoDocEntry(DocumentEntry, Database::"Value Entry",
-            SeminarLedgEntry.TableCaption, SeminarLedgEntry.Count);
+            SeminarLedgerEntry.TableCaption, SeminarLedgerEntry.Count);
         end;
     end;
 
     local procedure FindPstdSeminarRegHeader(var DocumentEntry: Record "Document Entry";
         DocNoFilter: Text; PostingDateFilter: Text)
     begin
-        if PstdSeminarRegHeader.ReadPermission() then begin
-            PstdSeminarRegHeader.Reset();
-            PstdSeminarRegHeader.SetFilter("No.", DocNoFilter);
-            PstdSeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
+        if PostedSeminarRegHeader.ReadPermission() then begin
+            PostedSeminarRegHeader.Reset();
+            PostedSeminarRegHeader.SetFilter("No.", DocNoFilter);
+            PostedSeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
             InsertIntoDocEntry(DocumentEntry, Database::"Posted Seminar Reg. Header",
-            PstdSeminarRegHeader.TableCaption, // <----PstdSeminarRegHeader.TableCaption from PstdSeminarRegHeaderTxt
-            PstdSeminarRegHeader.Count);
+            PostedSeminarRegHeader.TableCaption, // <----PstdSeminarRegHeader.TableCaption from PstdSeminarRegHeaderTxt
+            PostedSeminarRegHeader.Count);
         end;
     end;
 
     local procedure FindSeminarRegHeader(var DocumentEntry: Record "Document Entry";
         DocNoFilter: Text; PostingDateFilter: Text)
     begin
-        if SeminarRegHeader.ReadPermission() then begin
-            SeminarRegHeader.Reset();
-            SeminarRegHeader.SetFilter("No.", DocNoFilter);
-            SeminarRegHeader.SetFilter("Posting Date", PostingDateFilter);
+        if SeminarRegistrationHeader.ReadPermission() then begin
+            SeminarRegistrationHeader.Reset();
+            SeminarRegistrationHeader.SetFilter("No.", DocNoFilter);
+            SeminarRegistrationHeader.SetFilter("Posting Date", PostingDateFilter);
             InsertIntoDocEntry(DocumentEntry, Database::"Seminar Registration Header",
-            SeminarRegHeader.TableCaption, // <----SeminarRegHeader.TableCaption from SeminarRegHeaderTxt
-            SeminarRegHeader.Count);   // <----SeminarRegHeader.Count from PstdSeminarRegHeader.Count
+            SeminarRegistrationHeader.TableCaption, // <----SeminarRegHeader.TableCaption from SeminarRegHeaderTxt
+            SeminarRegistrationHeader.Count);   // <----SeminarRegHeader.Count from PstdSeminarRegHeader.Count
         end;
     end;
 
@@ -107,7 +107,7 @@ codeunit 50003 "Navigate Triger Extension"
     end;
 
     var
-        SeminarRegHeader: Record "Seminar Registration Header";
-        PstdSeminarRegHeader: Record "Posted Seminar Reg. Header";
-        SeminarLedgEntry: Record "Seminar Ledger Entry";
+        SeminarRegistrationHeader: Record "Seminar Registration Header";
+        PostedSeminarRegHeader: Record "Posted Seminar Reg. Header";
+        SeminarLedgerEntry: Record "Seminar Ledger Entry";
 }

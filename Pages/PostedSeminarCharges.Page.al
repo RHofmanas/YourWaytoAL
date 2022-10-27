@@ -6,6 +6,8 @@ page 50017 "Posted Seminar Charges"
     PageType = List;
     SourceTable = "Posted Seminar Charge";
     Editable = false;
+    UsageCategory = ReportsAndAnalysis;
+    ApplicationArea = All;
 
     layout
     {

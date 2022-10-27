@@ -8,6 +8,7 @@ page 50002 "Seminar Setup"
     PageType = Card;
     SourceTable = "Seminar Setup";
     UsageCategory = Administration;
+    ApplicationArea = all;
 
     layout
     {

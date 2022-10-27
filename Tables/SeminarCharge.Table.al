@@ -133,8 +133,8 @@ table 50006 "Seminar Charge"
                             Resource.Get("No.");
                             if "Unit of Measure Code" = '' then
                                 "Unit of Measure Code" := Resource."Base Unit of Measure";
-                            ResourceUofM.Get("No.", "Unit of Measure Code");
-                            "Qty. per Unit of Measure" := ResourceUofM."Qty. per Unit of Measure";
+                            ResourceUnitofMeasure.Get("No.", "Unit of Measure Code");
+                            "Qty. per Unit of Measure" := ResourceUnitofMeasure."Qty. per Unit of Measure";
                             "Unit Price" := Round(Resource."Unit Price" * "Qty. per Unit of Measure");
                         end;
                     "Charge Type"::"G/L Account":
@@ -213,7 +213,7 @@ table 50006 "Seminar Charge"
 
     var
         Resource: Record Resource;
-        ResourceUofM: Record "Resource Unit of Measure";
+        ResourceUnitofMeasure: Record "Resource Unit of Measure";
         GLAccount: Record "G/L Account";
 
 }

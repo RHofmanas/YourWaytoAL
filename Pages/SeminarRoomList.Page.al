@@ -8,6 +8,8 @@ page 50004 "Seminar Room List"
     PageType = List;
     CardPageId = "Seminar Room Card";
     SourceTable = "Seminar Room";
+    UsageCategory = Administration;
+    ApplicationArea = all;
 
     layout
     {

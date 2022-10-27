@@ -171,8 +171,12 @@ table 50004 "Seminar Registration Header"
                 PostCode: Record "Post Code";
                 Country: Record "Country/Region";
             begin
+#pragma warning disable AA0139
                 PostCode.LookupPostCode(Rec."Seminar Room City", Rec."Seminar Room Post Code",
                 Country."County Name", Country.Code);
+#pragma warning restore AA0139
+
+
             end;
         }
         field(15; "Seminar Room City"; Text[30])

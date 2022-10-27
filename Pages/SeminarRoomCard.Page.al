@@ -5,6 +5,8 @@ page 50003 "Seminar Room Card"
     Caption = 'Seminar Room Card';
     PageType = Card;
     SourceTable = "Seminar Room";
+    UsageCategory = Administration;
+    ApplicationArea = All;
 
     layout
     {

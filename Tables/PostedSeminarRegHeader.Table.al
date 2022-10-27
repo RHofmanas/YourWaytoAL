@@ -123,7 +123,7 @@ table 50011 "Posted Seminar Reg. Header"
             Caption = 'No. Series';
             TableRelation = "No. Series";
         }
-        field(26; "Registration No. Series"; Code[10])
+        field(26; "Registration No. Series"; Code[20])
         {
             Caption = 'Registration No. Series';
             TableRelation = "No. Series";

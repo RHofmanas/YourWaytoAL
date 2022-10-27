@@ -17,6 +17,7 @@ page 50103 "Object Runner"
             {
                 Caption = 'Run Codeunit';
                 ApplicationArea = all;
+                Image = Action;
                 ToolTip = 'Executes the Run Codeunit action.';
                 //RunObject = Codeunit ######; will NOT work if Codeunit has a TableNo!!
                 trigger OnAction()

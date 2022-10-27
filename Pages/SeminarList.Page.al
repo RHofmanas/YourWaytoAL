@@ -8,6 +8,8 @@ page 50006 "Seminar List"
     Editable = false;
     CardPageId = "Seminar Card";
     AutoSplitKey = true;
+    UsageCategory = Administration;
+    ApplicationArea = all;
 
     layout
     {
@@ -106,6 +108,7 @@ page 50006 "Seminar List"
                     ShortcutKey = 'Ctrl+Shift+N';
                     Caption = 'Entries';
                     ApplicationArea = All;
+                    Image = EntriesList;
                     RunObject = Page "Seminar Ledger Entries";
                     ToolTip = 'Executes the Entries action.';
                     //RunPageLink =
@@ -114,6 +117,7 @@ page 50006 "Seminar List"
                 {
                     Caption = 'Registrations';
                     ApplicationArea = All;
+                    Image = Registered;
                     RunObject = Page "Seminar Registration List";
                     ToolTip = 'Executes the Registrations action.';
                     //RunPageLink = 

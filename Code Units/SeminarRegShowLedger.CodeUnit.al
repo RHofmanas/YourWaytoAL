@@ -6,10 +6,10 @@ codeunit 50000 "Seminar Reg.-Show Ledger"
 
     trigger OnRun()
     begin
-        SemLedgEntry.SetRange("Entry No.", Rec."From Entry No.", Rec."To Entry No.");
-        Page.Run(Page::"Seminar Ledger Entries", SemLedgEntry);
+        SeminarLedgerEntry.SetRange("Entry No.", Rec."From Entry No.", Rec."To Entry No.");
+        Page.Run(Page::"Seminar Ledger Entries", SeminarLedgerEntry);
     end;
 
     var
-        SemLedgEntry: Record "Seminar Ledger Entry";
+        SeminarLedgerEntry: Record "Seminar Ledger Entry";
 }

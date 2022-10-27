@@ -8,6 +8,8 @@ page 50010 "Seminar Registration List"
     Editable = false;
     CardPageId = "Seminar Registration";
     AutoSplitKey = true;
+    UsageCategory = Administration;
+    ApplicationArea = All;
 
     layout
     {

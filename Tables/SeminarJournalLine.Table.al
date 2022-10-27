@@ -37,7 +37,7 @@ table 50008 "Seminar Journal Line"
         {
             Caption = 'Document No.';
         }
-        field(8; Description; Text[80])
+        field(8; Description; Text[100])
         {
             Caption = 'Description';
         }

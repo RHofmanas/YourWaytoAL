@@ -187,8 +187,8 @@ page 50018 "Posted Seminar Registration"
     }
     trigger OnAfterGetRecord()
     var
-        PostedSeminarHeader: Record "Posted Seminar Reg. Header";
+        PostedSeminarRegHeader: Record "Posted Seminar Reg. Header";
     begin
-        PostedSeminarHeader.SetRange("No.");
+        PostedSeminarRegHeader.SetRange("No.");
     end;
 }

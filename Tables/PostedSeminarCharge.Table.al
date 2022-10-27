@@ -11,7 +11,7 @@ table 50013 "Posted Seminar Charge"
 
     fields
     {
-        field(1; "Seminar Registration No."; Code[10])
+        field(1; "Seminar Registration No."; Code[20])
         {
             Caption = 'Seminar Registration No.';
             TableRelation = "Posted Seminar Reg. Header";

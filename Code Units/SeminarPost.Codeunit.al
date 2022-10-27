@@ -11,121 +11,117 @@ codeunit 50020 "Seminar-Post"
         CommentLine2: Record "Comment Line";
         Customer: Record Customer;
         Instructor: Record Instructor;
-        Job: Record Job;
-        JobJnlLine: Record "Job Journal Line";
-        JobLedgEntry: Record "Job Ledger Entry";
+        JobJournalLine: Record "Job Journal Line";
         JobtaskLine: Record "Job Task";
-        PstdSeminarCharge: Record "Posted Seminar Charge";
-        PstdSeminarRegHeader: Record "Posted Seminar Reg. Header";
-        PstdSeminarRegLine: Record "Posted Seminar Reg. Line";
+        PostedSeminarCharge: Record "Posted Seminar Charge";
+        PostedSeminarRegHeader: Record "Posted Seminar Reg. Header";
+        PostedSeminarRegLine: Record "Posted Seminar Reg. Line";
         Resource: Record Resource;
         SeminarCharge: Record "Seminar Charge";
-        SeminarJnlLine: Record "Seminar Journal Line";
-        SeminarLedgEntry: Record "Seminar Ledger Entry";
-        SeminarRegHeader: Record "Seminar Registration Header";
-        SeminarRegLine: Record "Seminar Registration Line";
+        SeminarJournalLine: Record "Seminar Journal Line";
+        SeminarRegistrationHeader: Record "Seminar Registration Header";
+        SeminarRegistrationLine: Record "Seminar Registration Line";
         SeminarRoom: Record "Seminar Room";
         SeminarSetup: Record "Seminar Setup";
         SourceCodeSetup: Record "Source Code Setup";
         JobJnlPostLine: Codeunit "Job Jnl.-Post Line";
         NoSeriesManagement: Codeunit NoSeriesManagement;
         SeminarJnlPostLine: Codeunit "Seminar Jnl.-Post Line";
-        ModifyHeader: Boolean;
         SourceCode: Code[10];
-        Window: Dialog;
+        DialogWindow: Dialog;
         JobLedgEntryNo: Integer;
         LineCount: Integer;
-        SeminarLedgerEntryNo: Integer;
+        //SeminarLedgerEntryNo: Integer;
+#pragma warning disable AA0470
         LineCounterLbl: Label 'Line No. #2#####';
 
         PostingLbl: Label 'Posting... \';
         SeminarRegLineEmptyLbl: Label 'There are no records in the table %1 associated with this %2';
         SemRegLbl: Label 'Seminar Reg. #1#####\';
+#pragma warning restore AA0470
 
     #region 
     trigger OnRun()
     var
         SeminarLedgerEntry: Record "Seminar Ledger Entry";
-        RecID: RecordId;
-        RecRef: RecordRef;
         OptionType: Enum "Option Type";
     begin
         ClearAll();
-        SeminarRegHeader := Rec;
+        SeminarRegistrationHeader := Rec;
 
-        SeminarRegHeader.TestField("Posting Date");
-        SeminarRegHeader.TestField("Document Date");
-        SeminarRegHeader.TestField("Starting Date");
-        SeminarRegHeader.TestField("Seminar No.");
-        SeminarRegHeader.TestField(Duration);
-        SeminarRegHeader.TestField("Instructor Code");
-        SeminarRegHeader.TestField("Seminar Room Code");
-        SeminarRegHeader.TestField("Job No.");
-        SeminarRegHeader.TestField(SeminarRegHeader.Status, "Seminar Reg. Status"::Closed); //
-        Instructor.Get(SeminarRegHeader."Instructor Code");
+        SeminarRegistrationHeader.TestField("Posting Date");
+        SeminarRegistrationHeader.TestField("Document Date");
+        SeminarRegistrationHeader.TestField("Starting Date");
+        SeminarRegistrationHeader.TestField("Seminar No.");
+        SeminarRegistrationHeader.TestField(Duration);
+        SeminarRegistrationHeader.TestField("Instructor Code");
+        SeminarRegistrationHeader.TestField("Seminar Room Code");
+        SeminarRegistrationHeader.TestField("Job No.");
+        SeminarRegistrationHeader.TestField(SeminarRegistrationHeader.Status, "Seminar Reg. Status"::Closed); //
+        Instructor.Get(SeminarRegistrationHeader."Instructor Code");
         Instructor.TestField("Resource No.");
-        SeminarRoom.Get(SeminarRegHeader."Seminar Room Code");
+        SeminarRoom.Get(SeminarRegistrationHeader."Seminar Room Code");
         SeminarRoom.TestField("Resource No.");
-        SeminarRegLine.Reset();
-        SeminarRegLine.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
-        if SeminarRegLine.IsEmpty then
-            Error(SeminarRegLineEmptyLbl, SeminarRegLine.TableCaption, SeminarRegHeader.TableCaption);
-        Window.Open(PostingLbl + SemRegLbl + LineCounterLbl);
-        Window.Update(1, SeminarRegHeader."No.");
-        if SeminarRegHeader."Posting No." = '' then begin
-            if SeminarRegHeader."Posting No. Series" = '' then begin
+        SeminarRegistrationLine.Reset();
+        SeminarRegistrationLine.SetRange("Seminar Registration No.", SeminarRegistrationHeader."No.");
+        if SeminarRegistrationLine.IsEmpty then
+            Error(SeminarRegLineEmptyLbl, SeminarRegistrationLine.TableCaption, SeminarRegistrationHeader.TableCaption);
+        DialogWindow.Open(PostingLbl + SemRegLbl + LineCounterLbl);
+        DialogWindow.Update(1, SeminarRegistrationHeader."No.");
+        if SeminarRegistrationHeader."Posting No." = '' then begin
+            if SeminarRegistrationHeader."Posting No. Series" = '' then begin
                 SeminarSetup.Get();
                 SeminarSetup.TestField("Posted Seminar Reg. Nos.");
-                SeminarRegHeader."Posting No. Series" := SeminarSetup."Posted Seminar Reg. Nos.";
+                SeminarRegistrationHeader."Posting No. Series" := SeminarSetup."Posted Seminar Reg. Nos.";
             end;
-            SeminarRegHeader."Posting No." := NoSeriesManagement.GetNextNo(SeminarRegHeader."Posting No. Series", SeminarRegHeader."Posting Date", true);
-            SeminarRegHeader.Modify();
+            SeminarRegistrationHeader."Posting No." := NoSeriesManagement.GetNextNo(SeminarRegistrationHeader."Posting No. Series", SeminarRegistrationHeader."Posting Date", true);
+            SeminarRegistrationHeader.Modify();
             Commit(); // Ends the current write transaction
         end;
-        SeminarRegLine.LockTable();
+        SeminarRegistrationLine.LockTable();
         SeminarLedgerEntry.LockTable();
-        SeminarLedgerEntryNo := SeminarLedgerEntry.GetLastEntryNo();
+        //SeminarLedgerEntryNo := SeminarLedgerEntry.GetLastEntryNo();
         SourceCodeSetup.Get();
         SourceCode := SourceCodeSetup.Seminar;
-        PstdSeminarRegHeader.Init();
-        PstdSeminarRegHeader.TransferFields(SeminarRegHeader);
-        PstdSeminarRegHeader."No." := SeminarRegHeader."Posting No.";
-        PstdSeminarRegHeader."Registration No. Series" := SeminarRegHeader."No. Series";
-        PstdSeminarRegHeader."Registration No." := SeminarRegHeader."No.";
-        PstdSeminarRegHeader."Source Code" := SourceCode;
-        PstdSeminarRegHeader."User ID" := UserId;
-        PstdSeminarRegHeader.Insert();
+        PostedSeminarRegHeader.Init();
+        PostedSeminarRegHeader.TransferFields(SeminarRegistrationHeader);
+        PostedSeminarRegHeader."No." := SeminarRegistrationHeader."Posting No.";
+        PostedSeminarRegHeader."Registration No. Series" := SeminarRegistrationHeader."No. Series";
+        PostedSeminarRegHeader."Registration No." := SeminarRegistrationHeader."No.";
+        PostedSeminarRegHeader."Source Code" := SourceCode;
+        PostedSeminarRegHeader."User ID" := CopyStr(UserId(), 1, MaxStrLen(PostedSeminarRegHeader."User ID"));
+        PostedSeminarRegHeader.Insert();
         CopyCommentLines(CommentLine."Table Name"::"Seminar Registration Header".AsInteger(),
-        CommentLine."Table Name"::"Posted Seminar Registration".AsInteger(), SeminarRegHeader."No.", PstdSeminarRegHeader."No.");
-        CopyCharges(SeminarRegHeader."No.", PstdSeminarRegHeader."No.");
-        SeminarRegLine.SetAutoCalcFields("Participant Name");
-        SeminarRegLine.FindFirst();
+        CommentLine."Table Name"::"Posted Seminar Registration".AsInteger(), SeminarRegistrationHeader."No.", PostedSeminarRegHeader."No.");
+        CopyCharges(SeminarRegistrationHeader."No.", PostedSeminarRegHeader."No.");
+        SeminarRegistrationLine.SetAutoCalcFields("Participant Name");
+        SeminarRegistrationLine.FindFirst();
         repeat
             LineCount += 1;
-            Window.Update(2, LineCount);
-            SeminarRegLine.TestField("Bill-to Customer No.");
-            SeminarRegLine.TestField("Participant Contact No.");
-            if not SeminarRegLine."To Invoice" then begin
-                SeminarRegLine."Seminar Price" := 0;
-                SeminarRegLine."Line Discount %" := 0;
-                SeminarRegLine."Line Discount Amount" := 0;
-                SeminarRegLine.Amount := 0;
+            DialogWindow.Update(2, LineCount);
+            SeminarRegistrationLine.TestField("Bill-to Customer No.");
+            SeminarRegistrationLine.TestField("Participant Contact No.");
+            if not SeminarRegistrationLine."To Invoice" then begin
+                SeminarRegistrationLine."Seminar Price" := 0;
+                SeminarRegistrationLine."Line Discount %" := 0;
+                SeminarRegistrationLine."Line Discount Amount" := 0;
+                SeminarRegistrationLine.Amount := 0;
             end;
-            JobLedgEntryNo := PostJobJnlLine(SeminarJnlLine."Option Type");
-            SeminarLedgerEntryNo := PostSeminarJnlLine(SeminarLedgerEntry."Option Type", JobLedgEntryNo);
-            PstdSeminarRegLine.Init();
-            PstdSeminarRegLine.TransferFields(SeminarRegLine);
-            PstdSeminarRegLine."Seminar Registration No." := PstdSeminarRegHeader."No.";
-            PstdSeminarRegLine.Insert();
+            JobLedgEntryNo := PostJobJnlLine(SeminarJournalLine."Option Type");
+            //SeminarLedgerEntryNo := PostSeminarJnlLine(SeminarLedgerEntry."Option Type", JobLedgEntryNo);
+            PostedSeminarRegLine.Init();
+            PostedSeminarRegLine.TransferFields(SeminarRegistrationLine);
+            PostedSeminarRegLine."Seminar Registration No." := PostedSeminarRegHeader."No.";
+            PostedSeminarRegLine.Insert();
             JobLedgEntryNo := 0;
-            SeminarLedgerEntryNo := 0;
-        until SeminarRegLine.Next() = 0;
+        //SeminarLedgerEntryNo := 0;
+        until SeminarRegistrationLine.Next() = 0;
         PostCharge();
         PostSeminarJnlLine(OptionType::Instructor, 0);
         PostSeminarJnlLine(OptionType::Room, 0);
-        SeminarRegLine.LockTable();
-        SeminarRegHeader.DeleteAll();
-        Rec := SeminarRegHeader;
+        SeminarRegistrationLine.LockTable();
+        SeminarRegistrationHeader.DeleteAll();
+        Rec := SeminarRegistrationHeader;
     end;
     #endregion
 
@@ -154,10 +150,10 @@ codeunit 50020 "Seminar-Post"
 
         if SeminarCharge.FindFirst() then
             repeat
-                PstdSeminarCharge.Init();
-                PstdSeminarCharge.TransferFields(SeminarCharge);
-                PstdSeminarCharge."Seminar Registration No." := ToNumber;
-                PstdSeminarCharge.Insert();
+                PostedSeminarCharge.Init();
+                PostedSeminarCharge.TransferFields(SeminarCharge);
+                PostedSeminarCharge."Seminar Registration No." := ToNumber;
+                PostedSeminarCharge.Insert();
             until SeminarCharge.Next() = 0;
     end;
     #endregion
@@ -166,71 +162,71 @@ codeunit 50020 "Seminar-Post"
     local procedure PostJobJnlLine(OptionType: Enum "Option Type"): Integer
     begin
         #region clump A side 179
-        if JobJnlLine."Seminar Registration No." = '' then exit(0); // <-----------------
-        SeminarRegHeader.Get(JobJnlLine."Seminar Registration No.");
-        Customer.Get(SeminarRegLine."Bill-to Customer No.");
-        Instructor.Get(SeminarRegHeader."Instructor Code");
+        if JobJournalLine."Seminar Registration No." = '' then exit(0); // <-----------------
+        SeminarRegistrationHeader.Get(JobJournalLine."Seminar Registration No.");
+        Customer.Get(SeminarRegistrationLine."Bill-to Customer No.");
+        Instructor.Get(SeminarRegistrationHeader."Instructor Code");
         Resource.Get(Instructor."Resource No.");
         #endregion
 
         #region clump A side 180
-        JobJnlLine.Init();
-        JobJnlLine."Gen. Bus. Posting Group" := Customer."Gen. Bus. Posting Group";
-        JobJnlLine."Entry Type" := "Job Journal Line Entry Type"::Usage;
-        JobJnlLine."Document No." := PstdSeminarRegHeader."No.";
-        JobJnlLine."Seminar Registration No." := PstdSeminarRegHeader."No.";
-        JobJnlLine."Source Code" := SourceCode;
-        JobJnlLine."Source Currency Total Cost" := SeminarRegLine."Seminar Price";
+        JobJournalLine.Init();
+        JobJournalLine."Gen. Bus. Posting Group" := Customer."Gen. Bus. Posting Group";
+        JobJournalLine."Entry Type" := "Job Journal Line Entry Type"::Usage;
+        JobJournalLine."Document No." := PostedSeminarRegHeader."No.";
+        JobJournalLine."Seminar Registration No." := PostedSeminarRegHeader."No.";
+        JobJournalLine."Source Code" := SourceCode;
+        JobJournalLine."Source Currency Total Cost" := SeminarRegistrationLine."Seminar Price";
         #endregion
 
-        JobJnlLine."Job No." := SeminarRegHeader."Job No.";
-        JobJnlLine."Posting Date" := SeminarRegHeader."Posting Date";
-        JobJnlLine."Document Date" := SeminarRegHeader."Document Date";
-        JobJnlLine.Type := JobJnlLine.Type::Resource;
-        JobJnlLine."Unit of Measure Code" := Resource."Base Unit of Measure";
-        JobJnlLine."No." := Resource."No.";
-        JobJnlLine."Gen. Prod. Posting Group" := SeminarRegHeader."Gen. Prod. Posting Group";
+        JobJournalLine."Job No." := SeminarRegistrationHeader."Job No.";
+        JobJournalLine."Posting Date" := SeminarRegistrationHeader."Posting Date";
+        JobJournalLine."Document Date" := SeminarRegistrationHeader."Document Date";
+        JobJournalLine.Type := JobJournalLine.Type::Resource;
+        JobJournalLine."Unit of Measure Code" := Resource."Base Unit of Measure";
+        JobJournalLine."No." := Resource."No.";
+        JobJournalLine."Gen. Prod. Posting Group" := SeminarRegistrationHeader."Gen. Prod. Posting Group";
 
         case OptionType of
             OptionType::Participant:
                 begin
-                    JobJnlLine.Description := SeminarRegLine."Participant Name";
-                    JobJnlLine."No." := Instructor."Resource No.";
-                    JobJnlLine."Unit of Measure Code" := Resource."Base Unit of Measure";
-                    JobJnlLine.Chargeable := SeminarRegLine."To Invoice";
-                    JobJnlLine.Quantity := 1;
-                    JobJnlLine."Unit Cost" := 0;
-                    JobJnlLine."Total Cost" := 0;
-                    JobJnlLine."Total Cost (LCY)" := 0;
-                    JobJnlLine."Unit Price" := SeminarRegLine.Amount;
-                    JobJnlLine."Total Price" := SeminarRegLine.Amount;
-                    JobJnlLine."Total Price (LCY)" := SeminarRegLine.Amount;
+                    JobJournalLine.Description := SeminarRegistrationLine."Participant Name";
+                    JobJournalLine."No." := Instructor."Resource No.";
+                    JobJournalLine."Unit of Measure Code" := Resource."Base Unit of Measure";
+                    JobJournalLine.Chargeable := SeminarRegistrationLine."To Invoice";
+                    JobJournalLine.Quantity := 1;
+                    JobJournalLine."Unit Cost" := 0;
+                    JobJournalLine."Total Cost" := 0;
+                    JobJournalLine."Total Cost (LCY)" := 0;
+                    JobJournalLine."Unit Price" := SeminarRegistrationLine.Amount;
+                    JobJournalLine."Total Price" := SeminarRegistrationLine.Amount;
+                    JobJournalLine."Total Price (LCY)" := SeminarRegistrationLine.Amount;
                 end;
             OptionType::Charge:
                 begin
-                    JobJnlLine.Description := SeminarCharge.Description;
+                    JobJournalLine.Description := SeminarCharge.Description;
                     if SeminarCharge."Charge Type" = SeminarCharge."Charge Type"::"G/L Account" then begin
-                        JobJnlLine.Type := "Job Journal Line Type"::"G/L Account";
-                        JobJnlLine.Chargeable := SeminarCharge."To Invoice";
-                        JobJnlLine."Quantity (Base)" := 1;
-                        JobJnlLine."Unit Cost" := 0;
-                        JobJnlLine."Total Cost" := 0;
-                        JobJnlLine.Quantity := SeminarCharge.Quantity;
-                        JobJnlLine."Unit Price" := SeminarCharge."Unit Price";
-                        JobJnlLine."Total Price" := SeminarCharge."Total Price";
+                        JobJournalLine.Type := "Job Journal Line Type"::"G/L Account";
+                        JobJournalLine.Chargeable := SeminarCharge."To Invoice";
+                        JobJournalLine."Quantity (Base)" := 1;
+                        JobJournalLine."Unit Cost" := 0;
+                        JobJournalLine."Total Cost" := 0;
+                        JobJournalLine.Quantity := SeminarCharge.Quantity;
+                        JobJournalLine."Unit Price" := SeminarCharge."Unit Price";
+                        JobJournalLine."Total Price" := SeminarCharge."Total Price";
                     end else begin
-                        JobJnlLine.Type := "Job Journal Line Type"::Resource;
-                        JobJnlLine."Qty. per Unit of Measure" := SeminarCharge."Qty. per Unit of Measure";
+                        JobJournalLine.Type := "Job Journal Line Type"::Resource;
+                        JobJournalLine."Qty. per Unit of Measure" := SeminarCharge."Qty. per Unit of Measure";
                     end;
-                    JobJnlLine."No." := SeminarCharge."No.";
+                    JobJournalLine."No." := SeminarCharge."No.";
                 end;
         end;
 
         JobtaskLine.Reset();
-        JobtaskLine.SetRange("Job No.", JobJnlLine."Job No.");
+        JobtaskLine.SetRange("Job No.", JobJournalLine."Job No.");
         JobtaskLine.FindFirst();
-        JobJnlLine."Job Task No." := JobtaskLine."Job Task No.";
-        exit(JobJnlPostLine.RunWithCheck(JobJnlLine));
+        JobJournalLine."Job Task No." := JobtaskLine."Job Task No.";
+        exit(JobJnlPostLine.RunWithCheck(JobJournalLine));
     end;
     #endregion
 
@@ -238,7 +234,7 @@ codeunit 50020 "Seminar-Post"
 
     local procedure PostCharge()
     begin
-        SeminarCharge.SetRange("Seminar Registration No.", SeminarRegHeader."No.");
+        SeminarCharge.SetRange("Seminar Registration No.", SeminarRegistrationHeader."No.");
         if SeminarCharge.FindFirst() then
             repeat
                 JobLedgEntryNo := PostJobJnlLine("Option Type"::Charge);
@@ -249,58 +245,58 @@ codeunit 50020 "Seminar-Post"
 
     local procedure PostSeminarJnlLine(OptionType: Enum "Option Type"; JobLedgerEntryNo: Integer): Integer
     begin
-        SeminarJnlLine.Init();
+        SeminarJournalLine.Init();
 
-        SeminarJnlLine."Seminar No." := SeminarRegHeader."Seminar No.";
-        SeminarJnlLine."Document Date" := SeminarRegHeader."Document Date";
-        SeminarJnlLine."Posting Date" := SeminarRegHeader."Posting Date";
-        SeminarJnlLine."Document No." := SeminarRegHeader."Posting No.";
-        SeminarJnlLine."Job No." := SeminarRegHeader."Job No.";
-        SeminarJnlLine."Instructor Code" := SeminarRegHeader."Instructor Code";
-        SeminarJnlLine."Seminar Room Code" := SeminarRegHeader."Instructor Code";
-        SeminarJnlLine."Job Ledger Entry No." := JobLedgerEntryNo;
-        SeminarJnlLine."Option Type" := OptionType;
+        SeminarJournalLine."Seminar No." := SeminarRegistrationHeader."Seminar No.";
+        SeminarJournalLine."Document Date" := SeminarRegistrationHeader."Document Date";
+        SeminarJournalLine."Posting Date" := SeminarRegistrationHeader."Posting Date";
+        SeminarJournalLine."Document No." := SeminarRegistrationHeader."Posting No.";
+        SeminarJournalLine."Job No." := SeminarRegistrationHeader."Job No.";
+        SeminarJournalLine."Instructor Code" := SeminarRegistrationHeader."Instructor Code";
+        SeminarJournalLine."Seminar Room Code" := SeminarRegistrationHeader."Instructor Code";
+        SeminarJournalLine."Job Ledger Entry No." := JobLedgerEntryNo;
+        SeminarJournalLine."Option Type" := OptionType;
         case OptionType of
             OptionType::Instructor:
                 begin
-                    SeminarRegHeader.TestField(Duration);
-                    SeminarJnlLine.Description := Instructor.Name;
-                    SeminarJnlLine."Charge Type" := SeminarJnlLine."Charge Type"::Resource;
-                    SeminarJnlLine.Chargeable := false;
-                    SeminarJnlLine.Quantity := SeminarRegHeader.Duration;
+                    SeminarRegistrationHeader.TestField(Duration);
+                    SeminarJournalLine.Description := Instructor.Name;
+                    SeminarJournalLine."Charge Type" := SeminarJournalLine."Charge Type"::Resource;
+                    SeminarJournalLine.Chargeable := false;
+                    SeminarJournalLine.Quantity := SeminarRegistrationHeader.Duration;
                 end;
             OptionType::Room:
                 begin
-                    SeminarRegHeader.TestField(Duration);
-                    SeminarJnlLine.Description := SeminarRoom.Name;
-                    SeminarJnlLine."Charge Type" := SeminarJnlLine."Charge Type"::Resource;
-                    SeminarJnlLine.Chargeable := false;
-                    SeminarJnlLine.Quantity := SeminarRegHeader.Duration;
+                    SeminarRegistrationHeader.TestField(Duration);
+                    SeminarJournalLine.Description := SeminarRoom.Name;
+                    SeminarJournalLine."Charge Type" := SeminarJournalLine."Charge Type"::Resource;
+                    SeminarJournalLine.Chargeable := false;
+                    SeminarJournalLine.Quantity := SeminarRegistrationHeader.Duration;
                 end;
             OptionType::Participant:
                 begin
-                    SeminarJnlLine."Bill-to Customer No." := SeminarRegLine."Bill-to Customer No.";
-                    SeminarJnlLine."Participant Contact No." := SeminarRegLine."Participant Contact No.";
-                    SeminarJnlLine."Charge Type" := SeminarJnlLine."Charge Type"::Resource;
-                    SeminarJnlLine.Chargeable := SeminarRegLine."To Invoice";
-                    SeminarJnlLine.Quantity := 1;
-                    SeminarJnlLine."Unit Price" := SeminarRegLine.Amount;
-                    SeminarJnlLine."Total Price" := SeminarRegLine.Amount;
-                    SeminarJnlLine.TestField("Job Ledger Entry No.");
+                    SeminarJournalLine."Bill-to Customer No." := SeminarRegistrationLine."Bill-to Customer No.";
+                    SeminarJournalLine."Participant Contact No." := SeminarRegistrationLine."Participant Contact No.";
+                    SeminarJournalLine."Charge Type" := SeminarJournalLine."Charge Type"::Resource;
+                    SeminarJournalLine.Chargeable := SeminarRegistrationLine."To Invoice";
+                    SeminarJournalLine.Quantity := 1;
+                    SeminarJournalLine."Unit Price" := SeminarRegistrationLine.Amount;
+                    SeminarJournalLine."Total Price" := SeminarRegistrationLine.Amount;
+                    SeminarJournalLine.TestField("Job Ledger Entry No.");
                 end;
             OptionType::Charge:
                 begin
-                    SeminarJnlLine.Description := SeminarCharge.Description;
-                    SeminarJnlLine."Bill-to Customer No." := SeminarCharge."Bill-to Customer No.";
-                    SeminarJnlLine."Charge Type" := SeminarCharge."Charge Type";
-                    SeminarJnlLine.Quantity := SeminarCharge.Quantity;
-                    SeminarJnlLine."Unit Price" := SeminarCharge."Unit Price";
-                    SeminarJnlLine."Total Price" := SeminarCharge."Total Price";
-                    SeminarJnlLine.Chargeable := SeminarCharge."To Invoice";
+                    SeminarJournalLine.Description := SeminarCharge.Description;
+                    SeminarJournalLine."Bill-to Customer No." := SeminarCharge."Bill-to Customer No.";
+                    SeminarJournalLine."Charge Type" := SeminarCharge."Charge Type";
+                    SeminarJournalLine.Quantity := SeminarCharge.Quantity;
+                    SeminarJournalLine."Unit Price" := SeminarCharge."Unit Price";
+                    SeminarJournalLine."Total Price" := SeminarCharge."Total Price";
+                    SeminarJournalLine.Chargeable := SeminarCharge."To Invoice";
                 end;
         end;
 
-        exit(SeminarJnlPostLine.RunWithCheck(SeminarJnlLine));
+        exit(SeminarJnlPostLine.RunWithCheck(SeminarJournalLine));
     end;
     #endregion functions
 

@@ -37,7 +37,7 @@ table 50009 "Seminar Ledger Entry"
         {
             Caption = 'Document No.';
         }
-        field(7; Description; Text[80])
+        field(7; Description; Text[100])
         {
             Caption = 'Description';
         }
@@ -173,30 +173,30 @@ table 50009 "Seminar Ledger Entry"
         exit(FindRecordManagement.GetLastEntryIntFieldValue(Rec, FieldNo("Entry No.")))
     end;
 
-    procedure CopyFromSeminarJnlLine(SeminarJnlLine: Record "Seminar Journal Line")
+    procedure CopyFromSeminarJnlLine(SeminarJournalLine: Record "Seminar Journal Line")
     begin
-        SeminarLedgEntry."Bill-to Customer No." := SeminarJnlLine."Bill-to Customer No.";
-        SeminarLedgEntry.Chargeable := SeminarJnlLine.Chargeable;
-        SeminarLedgEntry.Description := SeminarJnlLine.Description;
-        SeminarLedgEntry."Document Date" := SeminarJnlLine."Document Date";
-        SeminarLedgEntry."Document No." := SeminarJnlLine."Document No.";
-        SeminarLedgEntry."Option Type" := SeminarJnlLine."Option Type";
-        SeminarLedgEntry."Charge Type" := SeminarJnlLine."Charge Type";
-        SeminarLedgEntry."Instructor Code" := SeminarJnlLine."Instructor Code";
-        SeminarLedgEntry."Job No." := SeminarJnlLine."Job No.";
-        SeminarLedgEntry."Journal Batch Name" := SeminarJnlLine."Journal Batch Name";
-        SeminarLedgEntry."Participant Contact No." := SeminarJnlLine."Participant Contact No.";
-        SeminarLedgEntry."Posting Date" := SeminarJnlLine."Posting Date";
-        SeminarLedgEntry.Quantity := SeminarJnlLine.Quantity;
-        SeminarLedgEntry."Reason Code" := SeminarJnlLine."Reason Code";
-        SeminarLedgEntry."Seminar No." := SeminarJnlLine."Seminar No.";
-        SeminarLedgEntry."No. Series" := SeminarJnlLine."Posting No. Series";
-        SeminarLedgEntry."Seminar Registration No." := SeminarJnlLine."Seminar Registration No.";
-        SeminarLedgEntry."Seminar Room Code" := SeminarJnlLine."Seminar Room Code";
-        SeminarLedgEntry."Source Code" := SeminarJnlLine."Source Code";
-        SeminarLedgEntry."Source No." := SeminarJnlLine."Source No.";
-        SeminarLedgEntry."Source Type" := SeminarJnlLine."Source Type";
-        SeminarLedgEntry."Starting Date" := SeminarJnlLine."Starting Date";
+        SeminarLedgerEntry."Bill-to Customer No." := SeminarJournalLine."Bill-to Customer No.";
+        SeminarLedgerEntry.Chargeable := SeminarJournalLine.Chargeable;
+        SeminarLedgerEntry.Description := SeminarJournalLine.Description;
+        SeminarLedgerEntry."Document Date" := SeminarJournalLine."Document Date";
+        SeminarLedgerEntry."Document No." := SeminarJournalLine."Document No.";
+        SeminarLedgerEntry."Option Type" := SeminarJournalLine."Option Type";
+        SeminarLedgerEntry."Charge Type" := SeminarJournalLine."Charge Type";
+        SeminarLedgerEntry."Instructor Code" := SeminarJournalLine."Instructor Code";
+        SeminarLedgerEntry."Job No." := SeminarJournalLine."Job No.";
+        SeminarLedgerEntry."Journal Batch Name" := SeminarJournalLine."Journal Batch Name";
+        SeminarLedgerEntry."Participant Contact No." := SeminarJournalLine."Participant Contact No.";
+        SeminarLedgerEntry."Posting Date" := SeminarJournalLine."Posting Date";
+        SeminarLedgerEntry.Quantity := SeminarJournalLine.Quantity;
+        SeminarLedgerEntry."Reason Code" := SeminarJournalLine."Reason Code";
+        SeminarLedgerEntry."Seminar No." := SeminarJournalLine."Seminar No.";
+        SeminarLedgerEntry."No. Series" := SeminarJournalLine."Posting No. Series";
+        SeminarLedgerEntry."Seminar Registration No." := SeminarJournalLine."Seminar Registration No.";
+        SeminarLedgerEntry."Seminar Room Code" := SeminarJournalLine."Seminar Room Code";
+        SeminarLedgerEntry."Source Code" := SeminarJournalLine."Source Code";
+        SeminarLedgerEntry."Source No." := SeminarJournalLine."Source No.";
+        SeminarLedgerEntry."Source Type" := SeminarJournalLine."Source Type";
+        SeminarLedgerEntry."Starting Date" := SeminarJournalLine."Starting Date";
     end;
 
     /*
@@ -207,6 +207,6 @@ table 50009 "Seminar Ledger Entry"
     end;
     */
     var
-        SeminarLedgEntry: Record "Seminar Ledger Entry";
+        SeminarLedgerEntry: Record "Seminar Ledger Entry";
 
 }

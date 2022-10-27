@@ -10,6 +10,8 @@ page 50021 "Instructor Class Overview"
     Editable = false;
     ModifyAllowed = false;
     InsertAllowed = false;
+    UsageCategory = Administration;
+    ApplicationArea = All;
 
     layout
     {

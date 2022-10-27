@@ -9,30 +9,30 @@ codeunit 50002 "Seminar Jnl.-Post Line"
         RunWithCheck(Rec);
     end;
 
-    procedure RunWithCheck(var SeminarJnlLine2: Record "Seminar Journal Line"): Integer
+    procedure RunWithCheck(var SeminarJournalLine2: Record "Seminar Journal Line"): Integer
     var
         JobLedgEntryNo: Integer;
     begin
-        SeminarJnlLine.Copy(SeminarJnlLine2);
+        SeminarJournalLine.Copy(SeminarJournalLine2);
         JobLedgEntryNo := Code();
-        SeminarJnlLine2 := SeminarJnlLine;
+        SeminarJournalLine2 := SeminarJournalLine;
         exit(JobLedgEntryNo);
     end;
 
     procedure Code(): Integer
     begin
-        if SeminarJnlLine.EmptyLine() then
+        if SeminarJournalLine.EmptyLine() then
             exit;
 
-        SeminarJnlCheckLine.RunCheck(SeminarJnlLine);
+        SeminarJnlCheckLine.RunCheck(SeminarJournalLine);
 
         if NextEntryNo = 0 then begin
-            SeminarLedgEntry.LockTable();
-            NextEntryNo := SeminarLedgEntry.GetLastEntryNo() + 1;
+            SeminarLedgerEntry.LockTable();
+            NextEntryNo := SeminarLedgerEntry.GetLastEntryNo() + 1;
         end;
 
-        if SeminarJnlLine."Document Date" = 0D then
-            SeminarJnlLine."Document Date" := SeminarJnlLine."Posting Date";
+        if SeminarJournalLine."Document Date" = 0D then
+            SeminarJournalLine."Document Date" := SeminarJournalLine."Posting Date";
 
         if SeminarRegister."No." = 0 then begin
             SeminarRegister.LockTable();
@@ -42,28 +42,28 @@ codeunit 50002 "Seminar Jnl.-Post Line"
                 SeminarRegister."From Entry No." := NextEntryNo;
                 SeminarRegister."To Entry No." := NextEntryNo;
                 SeminarRegister."Creation Date" := Today();
-                SeminarRegister."Source Code" := SeminarJnlLine."Source Code";
-                SeminarRegister."Journal Batch Name" := SeminarJnlLine."Journal Batch Name";
-                SeminarRegister."User ID" := UserId;
+                SeminarRegister."Source Code" := SeminarJournalLine."Source Code";
+                SeminarRegister."Journal Batch Name" := SeminarJournalLine."Journal Batch Name";
+                SeminarRegister."User ID" := CopyStr(UserId(), 1, MaxStrLen(SeminarRegister."User ID"));
                 SeminarRegister.Insert();
             end;
         end;
         SeminarRegister."To Entry No." := NextEntryNo;
         SeminarRegister.Modify();
 
-        SeminarLedgEntry.Init();
-        SeminarLedgEntry.CopyFromSeminarJnlLine(SeminarJnlLine);
-        SeminarLedgEntry."Total Price" := Round(SeminarLedgEntry."Total Price");
-        SeminarLedgEntry."User ID" := UserId;
-        SeminarLedgEntry."Entry No." := NextEntryNo;
-        SeminarLedgEntry.Insert();
+        SeminarLedgerEntry.Init();
+        SeminarLedgerEntry.CopyFromSeminarJnlLine(SeminarJournalLine);
+        SeminarLedgerEntry."Total Price" := Round(SeminarLedgerEntry."Total Price");
+        SeminarLedgerEntry."User ID" := CopyStr(UserId(), 1, MaxStrLen(SeminarLedgerEntry."User ID"));
+        SeminarLedgerEntry."Entry No." := NextEntryNo;
+        SeminarLedgerEntry.Insert();
         NextEntryNo := NextEntryNo + 1;
         exit(NextEntryNo);
     end;
 
     var
-        SeminarJnlLine: Record "Seminar Journal Line";
-        SeminarLedgEntry: Record "Seminar Ledger Entry";
+        SeminarJournalLine: Record "Seminar Journal Line";
+        SeminarLedgerEntry: Record "Seminar Ledger Entry";
         SeminarRegister: Record "Seminar Register";
         SeminarJnlCheckLine: Codeunit "Seminar Jnl.-Check Line";
         NextEntryNo: Integer;
